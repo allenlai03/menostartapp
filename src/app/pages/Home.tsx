@@ -1,9 +1,28 @@
 import { useState } from "react";
-import { Flame, Thermometer, Moon, TrendingUp, Calendar, Battery, Cloud, Droplets, Apple, Zap, Leaf, Wind } from "lucide-react";
-import { Line, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { Link } from "react-router";
+import {
+  Flame,
+  Thermometer,
+  Moon,
+  TrendingUp,
+  Battery,
+  Activity,
+  FileText,
+  ChevronRight,
+  Heart,
+  MessageCircle,
+  Users,
+} from "lucide-react";
+import {
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from "recharts";
 
-const mockData = [
+const weeklyData = [
   { day: "Mon", hotFlashes: 3, temp: 98.2, sleep: 6 },
   { day: "Tue", hotFlashes: 5, temp: 98.8, sleep: 5 },
   { day: "Wed", hotFlashes: 2, temp: 98.1, sleep: 7 },
@@ -14,12 +33,17 @@ const mockData = [
 ];
 
 export function Home() {
-  const [selectedMetric, setSelectedMetric] = useState<"hotFlashes" | "temp" | "sleep">("hotFlashes");
+  const [selectedMetric, setSelectedMetric] = useState<
+    "hotFlashes" | "temp" | "sleep"
+  >("hotFlashes");
 
-  const today = new Date().toLocaleDateString("en-US", { 
-    weekday: "long", 
-    month: "long", 
-    day: "numeric" 
+  const hour = new Date().getHours();
+  const greeting =
+    hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+  const today = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
   });
 
   const metrics = [
@@ -29,19 +53,19 @@ export function Home() {
       label: "Hot Flashes",
       value: "3",
       unit: "today",
-      color: "from-rose-400 to-pink-500",
       bgColor: "bg-rose-50",
       textColor: "text-rose-600",
+      gradient: "from-rose-400 to-pink-500",
     },
     {
       id: "temp" as const,
       icon: Thermometer,
       label: "Temperature",
       value: "98.2",
-      unit: "°F",
-      color: "from-orange-400 to-red-500",
+      unit: "°F avg",
       bgColor: "bg-orange-50",
       textColor: "text-orange-600",
+      gradient: "from-orange-400 to-red-500",
     },
     {
       id: "sleep" as const,
@@ -49,124 +73,146 @@ export function Home() {
       label: "Sleep",
       value: "7",
       unit: "hours",
-      color: "from-purple-400 to-indigo-500",
       bgColor: "bg-purple-50",
       textColor: "text-purple-600",
+      gradient: "from-purple-400 to-indigo-500",
     },
   ];
 
   const selectedMetricData = metrics.find((m) => m.id === selectedMetric)!;
 
-  const quickTips = [
-    {
-      icon: Cloud,
-      label: "Hot Flashes",
-      tip: "Dress in layers and keep a fan nearby",
-      color: "text-rose-600",
-      bgColor: "bg-rose-50",
-    },
-    {
-      icon: Droplets,
-      label: "Night Sweats",
-      tip: "Use moisture-wicking bedding and cool your room",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
-    },
-    {
-      icon: Apple,
-      label: "Nutrition",
-      tip: "Eat foods rich in phytoestrogens",
-      color: "text-green-600",
-      bgColor: "bg-green-50",
-    },
-  ];
-
   return (
     <div className="min-h-full px-5 py-6 max-w-md mx-auto">
-      {/* Header with Battery */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-3">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800">
+            {greeting}, Sarah
+          </h1>
+          <p className="text-sm text-gray-500 mt-1">{today}</p>
+        </div>
+        <div className="bg-white rounded-2xl px-3 py-2 shadow-sm flex items-center gap-2">
+          <Battery className="w-5 h-5 text-green-500" />
           <div>
-            <h1 className="text-3xl font-semibold text-gray-800 mb-1">Welcome back</h1>
-            <p className="text-gray-500">{today}</p>
+            <p className="text-[11px] text-gray-400 font-medium leading-none">
+              Bracelet
+            </p>
+            <p className="text-base font-bold text-gray-800 leading-tight">
+              85%
+            </p>
           </div>
-          <div className="bg-white/80 backdrop-blur-xl rounded-2xl px-4 py-3 shadow-md">
+        </div>
+      </div>
+
+      {/* Prediction Alert — the hero */}
+      <Link to="/predict" className="block mb-6">
+        <div className="bg-gradient-to-br from-amber-500 to-orange-500 rounded-3xl p-5 shadow-lg text-white">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-2">
-              <Battery className="w-5 h-5 text-green-500" />
-              <div>
-                <p className="text-xs text-gray-500 font-medium">Menostart</p>
-                <p className="text-lg font-semibold text-gray-800">85%</p>
-              </div>
+              <Activity className="w-5 h-5" />
+              <span className="text-sm font-semibold text-amber-100">
+                AI Prediction
+              </span>
             </div>
+            <ChevronRight className="w-5 h-5 text-amber-200" />
+          </div>
+          <h2 className="text-xl font-bold mb-1">
+            Hot flash likely in ~35 min
+          </h2>
+          <p className="text-sm text-amber-100 leading-relaxed">
+            Your bracelet detected early signs. Tap for tips to prepare.
+          </p>
+          <div className="flex items-center gap-2 mt-3 bg-white/15 rounded-xl px-3 py-2 w-fit">
+            <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="text-sm font-medium">72% confidence</span>
           </div>
         </div>
-      </div>
+      </Link>
 
-      {/* Hero Card */}
-      <div className="relative mb-6 rounded-3xl overflow-hidden shadow-lg">
-        <ImageWithFallback
-          src="https://images.unsplash.com/photo-1758274526406-4c3a319da0bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZWFjZWZ1bCUyMHdvbWFuJTIwcmVsYXhpbmclMjB3ZWxsbmVzc3xlbnwxfHx8fDE3NzIxNDcyNzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-          alt="Wellness"
-          className="w-full h-40 object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4 text-white">
-          <p className="text-sm opacity-90 mb-1">Daily Insight</p>
-          <p className="font-medium">You're doing great! Keep tracking your symptoms.</p>
-        </div>
-      </div>
-
-      {/* Quick Stats */}
+      {/* Today's Metrics */}
       <div className="grid grid-cols-3 gap-3 mb-6">
         {metrics.map((metric) => {
           const Icon = metric.icon;
           const isSelected = selectedMetric === metric.id;
-          
           return (
             <button
               key={metric.id}
               onClick={() => setSelectedMetric(metric.id)}
               className={`p-4 rounded-2xl transition-all ${
-                isSelected
-                  ? "bg-white shadow-md scale-105"
-                  : "bg-white/60 backdrop-blur-sm"
+                isSelected ? "bg-white shadow-md scale-[1.03]" : "bg-white/60"
               }`}
             >
-              <div className={`w-10 h-10 rounded-xl ${metric.bgColor} flex items-center justify-center mb-2`}>
+              <div
+                className={`w-11 h-11 rounded-xl ${metric.bgColor} flex items-center justify-center mb-2`}
+              >
                 <Icon className={`w-5 h-5 ${metric.textColor}`} />
               </div>
-              <p className="text-2xl font-semibold text-gray-800">{metric.value}</p>
-              <p className="text-xs text-gray-500 mt-1">{metric.label}</p>
+              <p className="text-2xl font-bold text-gray-800">{metric.value}</p>
+              <p className="text-sm text-gray-500 mt-0.5">{metric.label}</p>
             </button>
           );
         })}
       </div>
 
-      {/* Chart */}
-      <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-5 shadow-lg mb-6">
+      {/* Weekly Trend */}
+      <div className="bg-white rounded-3xl p-5 shadow-sm mb-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="font-semibold text-gray-800">Weekly Trend</h3>
-            <p className="text-sm text-gray-500">{selectedMetricData.label}</p>
+            <h3 className="text-lg font-semibold text-gray-800">
+              Weekly Trend
+            </h3>
+            <p className="text-sm text-gray-500">
+              {selectedMetricData.label}
+            </p>
           </div>
-          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${selectedMetricData.color} flex items-center justify-center`}>
+          <div
+            className={`w-10 h-10 rounded-xl bg-gradient-to-br ${selectedMetricData.gradient} flex items-center justify-center`}
+          >
             <TrendingUp className="w-5 h-5 text-white" />
           </div>
         </div>
-        
-        <ResponsiveContainer width="100%" height={200}>
-          <LineChart data={mockData}>
-            <XAxis 
-              dataKey="day" 
+
+        <ResponsiveContainer width="100%" height={180}>
+          <LineChart data={weeklyData}>
+            <defs>
+              <linearGradient
+                id="hotFlashesGradient"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="0"
+              >
+                <stop offset="0%" stopColor="#fb7185" />
+                <stop offset="100%" stopColor="#ec4899" />
+              </linearGradient>
+              <linearGradient
+                id="tempGradient"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="0"
+              >
+                <stop offset="0%" stopColor="#fb923c" />
+                <stop offset="100%" stopColor="#ef4444" />
+              </linearGradient>
+              <linearGradient
+                id="sleepGradient"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="0"
+              >
+                <stop offset="0%" stopColor="#a78bfa" />
+                <stop offset="100%" stopColor="#6366f1" />
+              </linearGradient>
+            </defs>
+            <XAxis
+              dataKey="day"
               stroke="#9CA3AF"
-              fontSize={12}
+              fontSize={13}
               tickLine={false}
             />
-            <YAxis 
-              stroke="#9CA3AF"
-              fontSize={12}
-              tickLine={false}
-            />
+            <YAxis stroke="#9CA3AF" fontSize={13} tickLine={false} />
             <Tooltip
               contentStyle={{
                 backgroundColor: "rgba(255, 255, 255, 0.95)",
@@ -183,67 +229,104 @@ export function Home() {
               dot={{ fill: "#fff", strokeWidth: 2, r: 4 }}
               activeDot={{ r: 6 }}
             />
-            <defs>
-              <linearGradient id="hotFlashesGradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#fb7185" />
-                <stop offset="100%" stopColor="#ec4899" />
-              </linearGradient>
-              <linearGradient id="tempGradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#fb923c" />
-                <stop offset="100%" stopColor="#ef4444" />
-              </linearGradient>
-            
-
-      {/* Quick Tips */}
-      <div className="mt-6 space-y-3">
-        <h3 className="font-semibold text-gray-700 px-1">Quick Tips</h3>
-        <div className="space-y-2">
-          {quickTips.map((tip, index) => {
-            const Icon = tip.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 shadow-md flex items-start gap-3"
-              >
-                <div className={`w-10 h-10 rounded-lg ${tip.bgColor} flex items-center justify-center flex-shrink-0`}>
-                  <Icon className={`w-5 h-5 ${tip.color}`} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-medium text-gray-800 text-sm">{tip.label}</p>
-                  <p className="text-xs text-gray-600 leading-relaxed">{tip.tip}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <button className="w-full mt-3 px-4 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-2xl font-medium text-sm hover:shadow-lg transition-shadow">
-          View All Recommendations
-        </button>
-      </div>  <linearGradient id="sleepGradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#a78bfa" />
-                <stop offset="100%" stopColor="#6366f1" />
-              </linearGradient>
-            </defs>
           </LineChart>
         </ResponsiveContainer>
       </div>
 
-      {/* Quick Actions */}
-      <div className="space-y-3">
-        <h3 className="font-semibold text-gray-700 px-1">Quick Actions</h3>
-        <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 shadow-md flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center">
-            <Calendar className="w-6 h-6 text-white" />
+      {/* Community Preview */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between px-1 mb-3">
+          <h3 className="text-lg font-semibold text-gray-800">Community</h3>
+          <Link to="/community" className="text-sm text-rose-500 font-medium">
+            See all
+          </Link>
+        </div>
+        <div className="space-y-2">
+          <div className="bg-white rounded-2xl p-4 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="w-9 h-9 rounded-full bg-rose-100 flex items-center justify-center flex-shrink-0">
+                <span className="text-sm font-bold text-rose-600">M</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  Cooling sheets have been a game changer for my night sweats!
+                  Anyone else tried them?
+                </p>
+                <div className="flex items-center gap-4 mt-2 text-gray-400">
+                  <span className="flex items-center gap-1 text-sm">
+                    <Heart className="w-3.5 h-3.5" /> 24
+                  </span>
+                  <span className="flex items-center gap-1 text-sm">
+                    <MessageCircle className="w-3.5 h-3.5" /> 8
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex-1">
-            <p className="font-medium text-gray-800">Track Cycle</p>
-            <p className="text-sm text-gray-500">Day 12 of current cycle</p>
+          <div className="bg-white rounded-2xl p-4 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="w-9 h-9 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                <span className="text-sm font-bold text-purple-600">K</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  Having a rough day but feeling supported by this community.
+                  Thank you all!
+                </p>
+                <div className="flex items-center gap-4 mt-2 text-gray-400">
+                  <span className="flex items-center gap-1 text-sm">
+                    <Heart className="w-3.5 h-3.5" /> 42
+                  </span>
+                  <span className="flex items-center gap-1 text-sm">
+                    <MessageCircle className="w-3.5 h-3.5" /> 15
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <button className="px-4 py-2 bg-rose-100 text-rose-600 rounded-xl text-sm font-medium">
-            View
-          </button>
+        </div>
+        <div className="flex items-center gap-2 mt-3 px-1">
+          <Users className="w-4 h-4 text-rose-400" />
+          <p className="text-sm text-gray-500">
+            <strong className="text-gray-700">12,847</strong> women supporting
+            each other
+          </p>
         </div>
       </div>
+
+      {/* Partner Connect Widget */}
+      <Link to="/partner" className="block mb-6">
+        <div className="bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl p-4 shadow-sm text-white">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
+              <Heart className="w-6 h-6 text-white" fill="currentColor" />
+            </div>
+            <div className="flex-1">
+              <p className="font-semibold">Partner Connected</p>
+              <p className="text-sm text-rose-100">
+                Alex receives your daily updates
+              </p>
+            </div>
+            <ChevronRight className="w-5 h-5 text-rose-200" />
+          </div>
+        </div>
+      </Link>
+
+      {/* Doctor Report Link */}
+      <Link to="/report" className="block">
+        <div className="bg-white rounded-2xl p-4 shadow-sm flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0">
+            <FileText className="w-6 h-6 text-white" />
+          </div>
+          <div className="flex-1">
+            <p className="font-semibold text-gray-800">Doctor Report</p>
+            <p className="text-sm text-gray-500">
+              Export your 30-day health summary
+            </p>
+          </div>
+          <ChevronRight className="w-5 h-5 text-gray-300" />
+        </div>
+      </Link>
     </div>
   );
 }

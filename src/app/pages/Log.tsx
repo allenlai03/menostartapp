@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Flame, Thermometer, Moon, Droplet, Zap, Activity, Check, Wifi } from "lucide-react";
+import {
+  Flame,
+  Thermometer,
+  Moon,
+  Droplet,
+  Zap,
+  Activity,
+  Check,
+  Wifi,
+} from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Slider } from "../components/ui/slider";
 
@@ -64,15 +73,17 @@ const symptoms: Symptom[] = [
 ];
 
 export function Log() {
-  const [selectedSymptoms, setSelectedSymptoms] = useState<Set<string>>(new Set());
-  const [symptomValues, setSymptomValues] = useState<Record<string, number>>({});
+  const [selectedSymptoms, setSelectedSymptoms] = useState<Set<string>>(
+    new Set(),
+  );
+  const [symptomValues, setSymptomValues] = useState<Record<string, number>>(
+    {},
+  );
   const [saved, setSaved] = useState(false);
-  const [detectedHotFlashes, setDetectedHotFlashes] = useState<number>(3);
 
   const toggleSymptom = (id: string) => {
-    // Hot flashes are auto-detected from bracelet, cannot be manually toggled
     if (id === "hotFlashes") return;
-    
+
     const newSelected = new Set(selectedSymptoms);
     if (newSelected.has(id)) {
       newSelected.delete(id);
@@ -105,36 +116,36 @@ export function Log() {
     <div className="min-h-full px-5 py-6 max-w-md mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-1">Log Symptoms</h1>
-        <p className="text-gray-500">{today}</p>
+        <h1 className="text-2xl font-bold text-gray-800">Log Symptoms</h1>
+        <p className="text-sm text-gray-500 mt-1">{today}</p>
       </div>
 
-      {/* Menostart Bracelet Detection */}
+      {/* Bracelet Detection */}
       <div className="mb-6 bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl p-4 border border-rose-200">
-        <div className="flex items-start gap-3">
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-2">
-              <Wifi className="w-4 h-4 text-rose-500" />
-              <p className="text-sm font-semibold text-gray-800">Menostart Bracelet</p>
-            </div>
-            <p className="text-sm text-gray-600 mb-3">Auto-detected today:</p>
-            <div className="flex items-center gap-3 bg-white rounded-lg p-3">
-              <div className="w-10 h-10 rounded-lg bg-rose-50 flex items-center justify-center">
-                <Flame className="w-5 h-5 text-rose-600" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-800">{detectedHotFlashes} hot flashes</p>
-                <p className="text-xs text-gray-500">Automatically synced</p>
-              </div>
-            </div>
+        <div className="flex items-center gap-2 mb-3">
+          <Wifi className="w-5 h-5 text-rose-500" />
+          <p className="font-semibold text-gray-800">MenoStart Bracelet</p>
+        </div>
+        <p className="text-sm text-gray-600 mb-3">Auto-detected today:</p>
+        <div className="flex items-center gap-3 bg-white rounded-xl p-3">
+          <div className="w-11 h-11 rounded-lg bg-rose-50 flex items-center justify-center">
+            <Flame className="w-5 h-5 text-rose-600" />
+          </div>
+          <div>
+            <p className="font-bold text-gray-800 text-lg">
+              3 hot flashes
+            </p>
+            <p className="text-sm text-gray-500">Automatically synced</p>
           </div>
         </div>
       </div>
 
       {/* Symptoms Grid */}
       <div className="space-y-4 mb-6">
-        <p className="text-sm text-gray-600 px-1">Select additional symptoms you're experiencing</p>
-        
+        <p className="text-sm text-gray-600 px-1">
+          Tap to select symptoms you're experiencing
+        </p>
+
         <div className="grid grid-cols-2 gap-3">
           {symptoms.map((symptom) => {
             const Icon = symptom.icon;
@@ -146,31 +157,37 @@ export function Log() {
                 key={symptom.id}
                 onClick={() => toggleSymptom(symptom.id)}
                 disabled={isHotFlashes}
-                className={`p-4 rounded-2xl transition-all ${
+                className={`p-5 rounded-2xl transition-all ${
                   isHotFlashes
-                    ? "opacity-50 cursor-not-allowed"
+                    ? "opacity-50 cursor-not-allowed bg-white/40"
                     : isSelected
-                    ? "bg-white shadow-lg scale-105"
-                    : "bg-white/60 backdrop-blur-sm"
+                      ? "bg-white shadow-md scale-[1.02]"
+                      : "bg-white/60"
                 }`}
               >
-                <div className={`w-12 h-12 rounded-xl ${symptom.bgColor} flex items-center justify-center mb-3 mx-auto relative`}>
+                <div
+                  className={`w-12 h-12 rounded-xl ${symptom.bgColor} flex items-center justify-center mb-3 mx-auto relative`}
+                >
                   <Icon className={`w-6 h-6 ${symptom.color}`} />
                   {isSelected && (
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 rounded-full flex items-center justify-center">
-                      <Check className="w-3 h-3 text-white" />
+                    <div className="absolute -top-1.5 -right-1.5 w-6 h-6 bg-rose-500 rounded-full flex items-center justify-center">
+                      <Check className="w-3.5 h-3.5 text-white" />
                     </div>
                   )}
                   {isHotFlashes && (
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                      <Wifi className="w-2.5 h-2.5 text-white" />
+                    <div className="absolute -top-1.5 -right-1.5 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                      <Wifi className="w-3 h-3 text-white" />
                     </div>
                   )}
                 </div>
-                <p className="text-sm font-medium text-gray-800 text-center">
+                <p className="text-sm font-semibold text-gray-800 text-center">
                   {symptom.label}
                 </p>
-                {isHotFlashes && <p className="text-xs text-blue-600 text-center mt-1">Auto-tracked</p>}
+                {isHotFlashes && (
+                  <p className="text-sm text-blue-600 text-center mt-1">
+                    Auto-tracked
+                  </p>
+                )}
               </button>
             );
           })}
@@ -181,7 +198,7 @@ export function Log() {
       {selectedSymptoms.size > 0 && (
         <div className="space-y-4 mb-6">
           <p className="text-sm text-gray-600 px-1">Rate your symptoms</p>
-          
+
           {Array.from(selectedSymptoms).map((symptomId) => {
             const symptom = symptoms.find((s) => s.id === symptomId)!;
             const Icon = symptom.icon;
@@ -190,14 +207,18 @@ export function Log() {
             return (
               <div
                 key={symptomId}
-                className="bg-white/80 backdrop-blur-xl rounded-2xl p-5 shadow-md"
+                className="bg-white rounded-2xl p-5 shadow-sm"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 rounded-xl ${symptom.bgColor} flex items-center justify-center`}>
+                  <div
+                    className={`w-11 h-11 rounded-xl ${symptom.bgColor} flex items-center justify-center`}
+                  >
                     <Icon className={`w-5 h-5 ${symptom.color}`} />
                   </div>
                   <div className="flex-1">
-                    <p className="font-medium text-gray-800">{symptom.label}</p>
+                    <p className="font-semibold text-gray-800">
+                      {symptom.label}
+                    </p>
                     <p className="text-sm text-gray-500">
                       {symptom.type === "count" && `${value} times`}
                       {symptom.type === "scale" && `Intensity: ${value}/10`}
@@ -208,7 +229,9 @@ export function Log() {
 
                 <Slider
                   value={[value]}
-                  onValueChange={([newValue]) => updateValue(symptomId, newValue)}
+                  onValueChange={([newValue]) =>
+                    updateValue(symptomId, newValue)
+                  }
                   max={symptom.type === "hours" ? 12 : 10}
                   min={symptom.type === "hours" ? 0 : 1}
                   step={1}
@@ -221,7 +244,7 @@ export function Log() {
       )}
 
       {/* Save Button */}
-      <div className="fixed bottom-24 left-0 right-0 px-5">
+      <div className="fixed bottom-28 left-0 right-0 px-5">
         <div className="max-w-md mx-auto">
           <Button
             onClick={handleSave}
