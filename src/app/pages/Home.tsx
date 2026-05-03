@@ -89,7 +89,7 @@ export function Home() {
         <div className="flex items-center gap-2">
           <Logo variant="mark" className="w-7 h-7" />
           <span
-            className="text-lg text-[#b76767] tracking-tight"
+            className="text-lg text-white tracking-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif" }}
           >
             MenoStart
