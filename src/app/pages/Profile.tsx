@@ -24,7 +24,7 @@ export function Profile() {
       label: "Days Tracked",
       value: "87",
       icon: Calendar,
-      gradient: "from-rose-400 to-pink-500",
+      gradient: "from-[#d49b9b] to-[#b76767]",
     },
     {
       label: "Streak",
@@ -45,7 +45,7 @@ export function Profile() {
       icon: Users,
       label: "Community",
       description: "Connect with others",
-      color: "text-rose-600",
+      color: "text-[#9e5757]",
       bgColor: "bg-rose-50",
       path: "/community",
     },
@@ -53,8 +53,8 @@ export function Profile() {
       icon: Heart,
       label: "Partner Connect",
       description: "Share with your support person",
-      color: "text-pink-600",
-      bgColor: "bg-pink-50",
+      color: "text-[#9e5757]",
+      bgColor: "bg-rose-50",
       path: "/partner",
     },
     {
@@ -106,7 +106,7 @@ export function Profile() {
     <div className="min-h-full px-5 py-6 max-w-md mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Profile</h1>
+        <h1 className="font-display text-3xl font-medium text-gray-800 tracking-tight">Profile</h1>
       </div>
 
       {/* Profile Card */}
@@ -121,12 +121,12 @@ export function Profile() {
             <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-4 border-white" />
           </div>
           <div className="flex-1">
-            <h2 className="text-xl font-bold text-gray-800">Sarah Johnson</h2>
+            <h2 className="font-display text-2xl font-medium text-gray-800 tracking-tight">Sarah Johnson</h2>
             <p className="text-sm text-gray-500">sarah.johnson@email.com</p>
           </div>
         </div>
 
-        <Button className="w-full bg-rose-50 text-rose-600 hover:bg-rose-100 h-12 rounded-xl font-semibold shadow-none">
+        <Button className="w-full bg-rose-50 text-[#9e5757] hover:bg-rose-100 h-12 rounded-xl font-semibold shadow-none">
           Edit Profile
         </Button>
       </div>
@@ -153,17 +153,17 @@ export function Profile() {
       </div>
 
       {/* Journey Progress */}
-      <div className="bg-gradient-to-br from-rose-500 to-pink-500 rounded-3xl p-6 text-white shadow-lg mb-6">
+      <div className="bg-gradient-to-br from-[#c98484] to-[#b76767] rounded-3xl p-6 text-white shadow-lg mb-6">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <p className="text-sm text-rose-100">Your Journey</p>
-            <h3 className="text-2xl font-bold">87 Days Strong</h3>
+            <p className="text-sm text-rose-50">Your Journey</p>
+            <h3 className="font-display text-3xl font-medium tracking-tight">87 Days Strong</h3>
           </div>
           <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
             <Award className="w-6 h-6" />
           </div>
         </div>
-        <p className="text-sm text-rose-100 mb-4 leading-relaxed">
+        <p className="text-sm text-rose-50 mb-4 leading-relaxed">
           Consistently tracking symptoms and making real progress.
         </p>
         <div className="bg-white/20 rounded-full h-2.5">

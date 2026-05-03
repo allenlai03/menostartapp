@@ -56,7 +56,7 @@ const bodySignals = [
     icon: Heart,
     title: "Heart rhythm is changing",
     detail: "Your heart pattern often shifts like this before a hot flash",
-    color: "text-rose-600",
+    color: "text-[#9e5757]",
     bgColor: "bg-rose-50",
   },
   {
@@ -116,7 +116,7 @@ export function PredictiveAI() {
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-2xl font-bold text-gray-800">Your Forecast</h1>
+          <h1 className="font-display text-3xl font-medium text-gray-800 tracking-tight">Your Forecast</h1>
           <p className="text-sm text-gray-500">
             Based on your ring data
           </p>
@@ -124,7 +124,7 @@ export function PredictiveAI() {
       </div>
 
       {/* Main Alert */}
-      <div className="bg-gradient-to-br from-amber-500 to-orange-500 rounded-3xl p-6 shadow-lg mb-6 text-white">
+      <div className="bg-gradient-to-br from-[#d49b9b] to-[#b76767] rounded-3xl p-6 shadow-lg mb-6 text-white">
         <div className="flex items-center gap-5">
           <div className="relative flex-shrink-0">
             <svg width="100" height="100" viewBox="0 0 140 140">
@@ -158,7 +158,7 @@ export function PredictiveAI() {
             <p className="text-lg font-bold leading-snug">
               Hot flash likely in about 35 minutes
             </p>
-            <p className="text-sm text-amber-100 mt-1 leading-relaxed">
+            <p className="text-sm text-rose-50 mt-1 leading-relaxed">
               Your ring detected early signs. Scroll down for tips.
             </p>
           </div>
@@ -302,7 +302,7 @@ export function PredictiveAI() {
               <div
                 className={`w-3 h-3 rounded-full flex-shrink-0 ${
                   item.severity === "high"
-                    ? "bg-amber-500"
+                    ? "bg-[#b76767]"
                     : item.severity === "medium"
                       ? "bg-yellow-400"
                       : "bg-green-400"

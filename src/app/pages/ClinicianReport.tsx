@@ -51,7 +51,7 @@ const summaryStats = [
     unit: "total",
     change: "-27%",
     trend: "down" as const,
-    color: "text-rose-600",
+    color: "text-[#9e5757]",
     bgColor: "bg-rose-50",
   },
   {
@@ -112,7 +112,7 @@ export function ClinicianReport() {
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-2xl font-bold text-gray-800">Doctor Report</h1>
+          <h1 className="font-display text-3xl font-medium text-gray-800 tracking-tight">Doctor Report</h1>
           <p className="text-sm text-gray-500">Share with your clinician</p>
         </div>
         <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-sm">
@@ -127,7 +127,7 @@ export function ClinicianReport() {
             <p className="text-emerald-100 text-xs font-semibold tracking-wide">
               PATIENT REPORT
             </p>
-            <h2 className="text-xl font-bold mt-1">Sarah Johnson</h2>
+            <h2 className="font-display text-2xl font-medium mt-1 tracking-tight">Sarah Johnson</h2>
             <p className="text-emerald-100 text-sm mt-0.5">
               Age 48 — Perimenopause
             </p>
@@ -191,8 +191,8 @@ export function ClinicianReport() {
           <BarChart data={weeklyData} barGap={4}>
             <defs>
               <linearGradient id="reportHfBar" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#fb7185" />
-                <stop offset="100%" stopColor="#f43f5e" />
+                <stop offset="0%" stopColor="#d49b9b" />
+                <stop offset="100%" stopColor="#9e5757" />
               </linearGradient>
               <linearGradient id="reportNsBar" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#a78bfa" />
@@ -234,7 +234,7 @@ export function ClinicianReport() {
 
         <div className="flex items-center justify-center gap-5 mt-3">
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-sm bg-rose-400" />
+            <div className="w-3 h-3 rounded-sm bg-[#c98484]" />
             <span className="text-sm text-gray-500">Hot Flashes</span>
           </div>
           <div className="flex items-center gap-1.5">
@@ -319,7 +319,7 @@ export function ClinicianReport() {
               </div>
               <div className="w-full bg-gray-100 rounded-full h-2.5">
                 <div
-                  className="h-2.5 rounded-full bg-gradient-to-r from-rose-400 to-pink-500 transition-all duration-500"
+                  className="h-2.5 rounded-full bg-gradient-to-r from-[#d49b9b] to-[#b76767] transition-all duration-500"
                   style={{ width: `${t.correlation}%` }}
                 />
               </div>

@@ -55,8 +55,8 @@ export function Home() {
       value: "3",
       unit: "today",
       bgColor: "bg-rose-50",
-      textColor: "text-rose-600",
-      gradient: "from-rose-400 to-pink-500",
+      textColor: "text-[#9e5757]",
+      gradient: "from-[#d49b9b] to-[#b76767]",
     },
     {
       id: "temp" as const,
@@ -110,7 +110,7 @@ export function Home() {
 
       {/* Greeting */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">
+        <h1 className="font-display text-3xl font-medium text-gray-800 tracking-tight">
           {greeting}, Sarah
         </h1>
         <p className="text-sm text-gray-500 mt-1">{today}</p>
@@ -118,20 +118,20 @@ export function Home() {
 
       {/* Prediction Alert — the hero */}
       <Link to="/predict" className="block mb-6">
-        <div className="bg-gradient-to-br from-amber-500 to-orange-500 rounded-3xl p-5 shadow-lg text-white">
+        <div className="bg-gradient-to-br from-[#d49b9b] to-[#b76767] rounded-3xl p-5 shadow-lg text-white">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-2">
               <Activity className="w-5 h-5" />
-              <span className="text-sm font-semibold text-amber-100">
+              <span className="text-sm font-semibold text-rose-50">
                 AI Prediction
               </span>
             </div>
-            <ChevronRight className="w-5 h-5 text-amber-200" />
+            <ChevronRight className="w-5 h-5 text-rose-50" />
           </div>
-          <h2 className="text-xl font-bold mb-1">
+          <h2 className="font-display text-2xl font-medium mb-1 tracking-tight">
             Hot flash likely in ~35 min
           </h2>
-          <p className="text-sm text-amber-100 leading-relaxed">
+          <p className="text-sm text-rose-50 leading-relaxed">
             Your ring detected early signs. Tap for tips to prepare.
           </p>
           <div className="flex items-center gap-2 mt-3 bg-white/15 rounded-xl px-3 py-2 w-fit">
@@ -194,8 +194,8 @@ export function Home() {
                 x2="1"
                 y2="0"
               >
-                <stop offset="0%" stopColor="#fb7185" />
-                <stop offset="100%" stopColor="#ec4899" />
+                <stop offset="0%" stopColor="#d49b9b" />
+                <stop offset="100%" stopColor="#b76767" />
               </linearGradient>
               <linearGradient
                 id="tempGradient"
@@ -249,7 +249,7 @@ export function Home() {
       <div className="mb-6">
         <div className="flex items-center justify-between px-1 mb-3">
           <h3 className="text-lg font-semibold text-gray-800">Community</h3>
-          <Link to="/community" className="text-sm text-rose-500 font-medium">
+          <Link to="/community" className="text-sm text-[#b76767] font-medium">
             See all
           </Link>
         </div>
@@ -257,7 +257,7 @@ export function Home() {
           <div className="bg-white rounded-2xl p-4 shadow-sm">
             <div className="flex items-start gap-3">
               <div className="w-9 h-9 rounded-full bg-rose-100 flex items-center justify-center flex-shrink-0">
-                <span className="text-sm font-bold text-rose-600">M</span>
+                <span className="text-sm font-bold text-[#9e5757]">M</span>
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-gray-700 leading-relaxed">
@@ -298,7 +298,7 @@ export function Home() {
           </div>
         </div>
         <div className="flex items-center gap-2 mt-3 px-1">
-          <Users className="w-4 h-4 text-rose-400" />
+          <Users className="w-4 h-4 text-[#c98484]" />
           <p className="text-sm text-gray-500">
             <strong className="text-gray-700">12,847</strong> women supporting
             each other
@@ -308,18 +308,18 @@ export function Home() {
 
       {/* Partner Connect Widget */}
       <Link to="/partner" className="block mb-6">
-        <div className="bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl p-4 shadow-sm text-white">
+        <div className="bg-gradient-to-br from-[#b76767] to-[#c98484] rounded-2xl p-4 shadow-sm text-white">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
               <Heart className="w-6 h-6 text-white" fill="currentColor" />
             </div>
             <div className="flex-1">
               <p className="font-semibold">Partner Connected</p>
-              <p className="text-sm text-rose-100">
+              <p className="text-sm text-rose-50">
                 Alex receives your daily updates
               </p>
             </div>
-            <ChevronRight className="w-5 h-5 text-rose-200" />
+            <ChevronRight className="w-5 h-5 text-rose-100" />
           </div>
         </div>
       </Link>

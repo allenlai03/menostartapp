@@ -79,7 +79,7 @@ export function Community() {
     <div className="min-h-full pb-6 max-w-md mx-auto">
       {/* Header */}
       <div className="px-5 pt-6 pb-4 bg-white/80 backdrop-blur-xl sticky top-0 z-10">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-4">Community</h1>
+        <h1 className="font-display text-4xl font-medium text-gray-800 mb-4 tracking-tight">Community</h1>
         
         {/* Search */}
         <div className="relative">
@@ -93,7 +93,7 @@ export function Community() {
 
       {/* Stats Banner */}
       <div className="px-5 mb-6">
-        <div className="bg-gradient-to-br from-rose-500 to-pink-500 rounded-3xl p-5 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-[#c98484] to-[#b76767] rounded-3xl p-5 text-white shadow-lg">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1676629650907-d50f2f27db20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXBwb3J0aXZlJTIwd29tZW4lMjBjb21tdW5pdHklMjB0b2dldGhlcnxlbnwxfHx8fDE3NzIxNDcyNzR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
             alt="Community"
@@ -168,17 +168,17 @@ export function Community() {
               <button
                 onClick={() => toggleLike(post.id)}
                 className={`flex items-center gap-2 transition-colors ${
-                  post.isLiked ? "text-rose-500" : "hover:text-rose-500"
+                  post.isLiked ? "text-[#b76767]" : "hover:text-[#b76767]"
                 }`}
               >
                 <Heart className={`w-5 h-5 ${post.isLiked ? "fill-current" : ""}`} />
                 <span className="text-sm font-medium">{post.likes}</span>
               </button>
-              <button className="flex items-center gap-2 hover:text-rose-500 transition-colors">
+              <button className="flex items-center gap-2 hover:text-[#b76767] transition-colors">
                 <MessageCircle className="w-5 h-5" />
                 <span className="text-sm font-medium">{post.comments}</span>
               </button>
-              <button className="flex items-center gap-2 hover:text-rose-500 transition-colors ml-auto">
+              <button className="flex items-center gap-2 hover:text-[#b76767] transition-colors ml-auto">
                 <Share2 className="w-5 h-5" />
               </button>
             </div>
@@ -190,7 +190,7 @@ export function Community() {
       <div className="px-5 mt-6">
         <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-4">
           <div className="flex items-center gap-2 mb-3">
-            <TrendingUp className="w-5 h-5 text-rose-500" />
+            <TrendingUp className="w-5 h-5 text-[#b76767]" />
             <h3 className="font-semibold text-gray-800">Trending Topics</h3>
           </div>
           <div className="flex flex-wrap gap-2">

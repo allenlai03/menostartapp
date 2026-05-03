@@ -26,7 +26,7 @@ const symptoms: Symptom[] = [
     id: "hotFlashes",
     icon: Flame,
     label: "Hot Flashes",
-    color: "text-rose-600",
+    color: "text-[#9e5757]",
     bgColor: "bg-rose-50",
     type: "count",
   },
@@ -66,8 +66,8 @@ const symptoms: Symptom[] = [
     id: "mood",
     icon: Activity,
     label: "Mood",
-    color: "text-pink-600",
-    bgColor: "bg-pink-50",
+    color: "text-[#9e5757]",
+    bgColor: "bg-rose-50",
     type: "scale",
   },
 ];
@@ -116,20 +116,20 @@ export function Log() {
     <div className="min-h-full px-5 py-6 max-w-md mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Log Symptoms</h1>
+        <h1 className="font-display text-3xl font-medium text-gray-800 tracking-tight">Log Symptoms</h1>
         <p className="text-sm text-gray-500 mt-1">{today}</p>
       </div>
 
       {/* Ring Detection */}
       <div className="mb-6 bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl p-4 border border-rose-200">
         <div className="flex items-center gap-2 mb-3">
-          <Wifi className="w-5 h-5 text-rose-500" />
+          <Wifi className="w-5 h-5 text-[#b76767]" />
           <p className="font-semibold text-gray-800">MenoStart Ring</p>
         </div>
         <p className="text-sm text-gray-600 mb-3">Auto-detected today:</p>
         <div className="flex items-center gap-3 bg-white rounded-xl p-3">
           <div className="w-11 h-11 rounded-lg bg-rose-50 flex items-center justify-center">
-            <Flame className="w-5 h-5 text-rose-600" />
+            <Flame className="w-5 h-5 text-[#9e5757]" />
           </div>
           <div>
             <p className="font-bold text-gray-800 text-lg">
@@ -170,7 +170,7 @@ export function Log() {
                 >
                   <Icon className={`w-6 h-6 ${symptom.color}`} />
                   {isSelected && (
-                    <div className="absolute -top-1.5 -right-1.5 w-6 h-6 bg-rose-500 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-1.5 -right-1.5 w-6 h-6 bg-[#b76767] rounded-full flex items-center justify-center">
                       <Check className="w-3.5 h-3.5 text-white" />
                     </div>
                   )}
@@ -252,7 +252,7 @@ export function Log() {
             className={`w-full h-14 rounded-2xl font-semibold text-base shadow-lg transition-all ${
               saved
                 ? "bg-green-500 hover:bg-green-600"
-                : "bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600"
+                : "bg-gradient-to-r from-[#c98484] to-[#b76767] hover:from-[#a55757] hover:to-[#9e5757]"
             }`}
           >
             {saved ? (

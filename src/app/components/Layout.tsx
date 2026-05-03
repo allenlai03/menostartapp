@@ -17,7 +17,7 @@ export function Layout() {
   const isLogActive = location.pathname === "/log";
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-rose-50 via-purple-50 to-pink-50">
+    <div className="h-screen flex flex-col bg-gradient-to-br from-rose-50 via-stone-50 to-rose-50">
       <main className="flex-1 overflow-y-auto pb-24">
         <Outlet />
       </main>
@@ -31,12 +31,12 @@ export function Layout() {
 
             <Link to="/log" className="flex flex-col items-center relative -top-4">
               <div
-                className={`w-14 h-14 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-lg shadow-rose-200/50 active:scale-95 transition-transform ${isLogActive ? "ring-3 ring-rose-200" : ""}`}
+                className={`w-14 h-14 rounded-full bg-gradient-to-br from-[#c98484] to-[#b76767] flex items-center justify-center shadow-lg shadow-[#d49b9b]/50 active:scale-95 transition-transform ${isLogActive ? "ring-3 ring-[#e9cccc]" : ""}`}
               >
                 <Plus className="w-7 h-7 text-white" strokeWidth={2.5} />
               </div>
               <span
-                className={`text-[11px] font-semibold mt-1 ${isLogActive ? "text-rose-500" : "text-gray-500"}`}
+                className={`text-[11px] font-semibold mt-1 ${isLogActive ? "text-[#b76767]" : "text-gray-500"}`}
               >
                 Log
               </span>
@@ -71,10 +71,10 @@ function NavItem({
       className="flex flex-col items-center gap-1 py-2 px-3 min-w-[60px]"
     >
       <Icon
-        className={`w-6 h-6 transition-colors ${isActive ? "text-rose-500" : "text-gray-400"}`}
+        className={`w-6 h-6 transition-colors ${isActive ? "text-[#b76767]" : "text-gray-400"}`}
       />
       <span
-        className={`text-[11px] font-semibold transition-colors ${isActive ? "text-rose-500" : "text-gray-500"}`}
+        className={`text-[11px] font-semibold transition-colors ${isActive ? "text-[#b76767]" : "text-gray-500"}`}
       >
         {item.label}
       </span>

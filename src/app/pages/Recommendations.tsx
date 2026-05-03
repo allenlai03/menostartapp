@@ -15,7 +15,7 @@ const recommendations: Recommendation[] = [
     id: "hotFlashes",
     symptom: "Hot Flashes",
     icon: Cloud,
-    color: "text-rose-600",
+    color: "text-[#9e5757]",
     bgColor: "bg-rose-50",
     tips: [
       "Dress in layers so you can remove clothing quickly",
@@ -108,7 +108,7 @@ export function Recommendations() {
     <div className="min-h-full pb-6 max-w-md mx-auto">
       {/* Header */}
       <div className="px-5 pt-6 pb-4 bg-white/80 backdrop-blur-xl sticky top-0 z-10">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-2">Recommendations</h1>
+        <h1 className="font-display text-4xl font-medium text-gray-800 mb-2 tracking-tight">Recommendations</h1>
         <p className="text-gray-600 text-sm">Helpful tips to manage your menopause symptoms</p>
       </div>
 
@@ -116,7 +116,7 @@ export function Recommendations() {
       <div className="px-5 mb-6 mt-4">
         <div className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-2xl p-4 border border-rose-200">
           <div className="flex items-start gap-3">
-            <Heart className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
+            <Heart className="w-5 h-5 text-[#b76767] flex-shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold text-gray-800 mb-1">Self-Care Matters</p>
               <p className="text-sm text-gray-600">
@@ -150,7 +150,7 @@ export function Recommendations() {
                   <div key={index} className="flex gap-3">
                     <div className="flex-shrink-0">
                       <div className="w-5 h-5 rounded-full bg-gradient-to-br from-rose-200 to-pink-200 flex items-center justify-center mt-0.5">
-                        <span className="text-xs font-semibold text-rose-600">{index + 1}</span>
+                        <span className="text-xs font-semibold text-[#9e5757]">{index + 1}</span>
                       </div>
                     </div>
                     <p className="text-sm text-gray-700 leading-relaxed">{tip}</p>

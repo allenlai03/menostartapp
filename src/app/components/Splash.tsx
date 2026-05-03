@@ -2,7 +2,7 @@ import { Logo } from "./Logo";
 
 export function Splash() {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50 splash-fade">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-rose-50 via-stone-50 to-rose-50 splash-fade">
       <div className="flex flex-col items-center gap-5 splash-rise">
         <Logo variant="mark" className="w-28 h-28 splash-pulse" />
         <div

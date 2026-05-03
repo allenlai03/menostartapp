@@ -39,7 +39,7 @@ export function Partner() {
     <div className="min-h-full px-5 py-6 max-w-md mx-auto pb-6">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-1">Partner Connect</h1>
+        <h1 className="font-display text-4xl font-medium text-gray-800 mb-1 tracking-tight">Partner Connect</h1>
         <p className="text-gray-500">Keep your support system informed</p>
       </div>
 
@@ -79,14 +79,14 @@ export function Partner() {
         <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-5 mb-6 shadow-md">
           <div className="text-center mb-4">
             <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Share2 className="w-8 h-8 text-rose-500" />
+              <Share2 className="w-8 h-8 text-[#b76767]" />
             </div>
             <h3 className="font-semibold text-gray-800 mb-2">Invite Your Partner</h3>
             <p className="text-sm text-gray-600">
               Share a link to help your partner understand your journey
             </p>
           </div>
-          <Button className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 h-12 rounded-xl">
+          <Button className="w-full bg-gradient-to-r from-[#c98484] to-[#b76767] hover:from-[#a55757] hover:to-[#9e5757] h-12 rounded-xl">
             Send Invitation
           </Button>
         </div>
@@ -95,7 +95,7 @@ export function Partner() {
       {/* Notification Settings */}
       <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-5 shadow-md mb-6">
         <div className="flex items-center gap-2 mb-4">
-          <Bell className="w-5 h-5 text-rose-500" />
+          <Bell className="w-5 h-5 text-[#b76767]" />
           <h3 className="font-semibold text-gray-800">Notification Settings</h3>
         </div>
 
@@ -144,7 +144,7 @@ export function Partner() {
       {/* Recent Updates Shared */}
       <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-5 shadow-md mb-6">
         <div className="flex items-center gap-2 mb-4">
-          <Activity className="w-5 h-5 text-rose-500" />
+          <Activity className="w-5 h-5 text-[#b76767]" />
           <h3 className="font-semibold text-gray-800">Recent Updates</h3>
         </div>
 
@@ -176,7 +176,7 @@ export function Partner() {
       {/* Send Message */}
       <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-5 shadow-md">
         <div className="flex items-center gap-2 mb-4">
-          <MessageSquare className="w-5 h-5 text-rose-500" />
+          <MessageSquare className="w-5 h-5 text-[#b76767]" />
           <h3 className="font-semibold text-gray-800">Send a Note</h3>
         </div>
 
@@ -187,7 +187,7 @@ export function Partner() {
           className="mb-3 min-h-24 bg-white/60 border-gray-200 rounded-xl"
         />
 
-        <Button className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 h-12 rounded-xl">
+        <Button className="w-full bg-gradient-to-r from-[#c98484] to-[#b76767] hover:from-[#a55757] hover:to-[#9e5757] h-12 rounded-xl">
           Send Message
         </Button>
       </div>

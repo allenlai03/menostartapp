@@ -115,11 +115,11 @@ export function Chatbot() {
           >
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </Link>
-          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center">
+          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#d49b9b] to-[#b76767] flex items-center justify-center">
             <Bot className="w-6 h-6 text-white" />
           </div>
           <div className="flex-1">
-            <h1 className="text-lg font-bold text-gray-800">MenoStart AI</h1>
+            <h1 className="font-display text-xl font-medium text-gray-800 tracking-tight">MenoStart AI</h1>
             <div className="flex items-center gap-1.5">
               <div className="w-2 h-2 rounded-full bg-green-400" />
               <p className="text-sm text-gray-500">Always here for you</p>
@@ -141,14 +141,14 @@ export function Chatbot() {
             <div
               className={`max-w-[85%] ${
                 msg.role === "user"
-                  ? "bg-gradient-to-br from-rose-500 to-pink-500 text-white rounded-2xl rounded-br-md"
+                  ? "bg-gradient-to-br from-[#c98484] to-[#b76767] text-white rounded-2xl rounded-br-md"
                   : "bg-white text-gray-700 rounded-2xl rounded-bl-md shadow-sm"
               } px-4 py-3`}
             >
               {msg.role === "assistant" && (
                 <div className="flex items-center gap-1.5 mb-2">
-                  <Bot className="w-4 h-4 text-rose-400" />
-                  <span className="text-xs font-semibold text-rose-400">
+                  <Bot className="w-4 h-4 text-[#c98484]" />
+                  <span className="text-xs font-semibold text-[#c98484]">
                     MenoStart AI
                   </span>
                 </div>
@@ -175,8 +175,8 @@ export function Chatbot() {
           <div className="flex justify-start">
             <div className="bg-white rounded-2xl rounded-bl-md shadow-sm px-4 py-3">
               <div className="flex items-center gap-1.5 mb-2">
-                <Bot className="w-4 h-4 text-rose-400" />
-                <span className="text-xs font-semibold text-rose-400">
+                <Bot className="w-4 h-4 text-[#c98484]" />
+                <span className="text-xs font-semibold text-[#c98484]">
                   MenoStart AI
                 </span>
               </div>
@@ -208,7 +208,7 @@ export function Chatbot() {
             <button
               key={i}
               onClick={() => sendMessage(reply)}
-              className="px-4 py-2.5 bg-white rounded-xl text-sm font-medium text-gray-600 shadow-sm border border-gray-100 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 transition-colors active:scale-95"
+              className="px-4 py-2.5 bg-white rounded-xl text-sm font-medium text-gray-600 shadow-sm border border-gray-100 hover:bg-rose-50 hover:text-[#9e5757] hover:border-[#e9cccc] transition-colors active:scale-95"
             >
               {reply}
             </button>
@@ -225,12 +225,12 @@ export function Chatbot() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask me anything..."
-            className="flex-1 bg-white rounded-2xl px-4 py-3.5 text-base text-gray-700 placeholder-gray-400 shadow-sm border border-gray-100 focus:outline-none focus:ring-2 focus:ring-rose-200 focus:border-rose-300"
+            className="flex-1 bg-white rounded-2xl px-4 py-3.5 text-base text-gray-700 placeholder-gray-400 shadow-sm border border-gray-100 focus:outline-none focus:ring-2 focus:ring-[#e9cccc] focus:border-[#d49b9b]"
           />
           <button
             type="submit"
             disabled={!input.trim()}
-            className="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-sm disabled:opacity-40 transition-opacity active:scale-95"
+            className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#c98484] to-[#b76767] flex items-center justify-center shadow-sm disabled:opacity-40 transition-opacity active:scale-95"
           >
             <Send className="w-5 h-5 text-white" />
           </button>
