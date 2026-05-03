@@ -233,7 +233,7 @@ export function Profile() {
 
       {/* App Info */}
       <div className="bg-white/60 rounded-2xl p-4 mb-4 flex flex-col items-center gap-1">
-        <Logo variant="mark" className="w-8 h-8 mb-1" />
+        <Logo variant="mark" className="w-16 h-16 mb-1" />
         <p
           className="text-center text-base text-[#b76767]"
           style={{ fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif" }}

@@ -86,10 +86,10 @@ export function Home() {
     <div className="min-h-full px-5 py-6 max-w-md mx-auto">
       {/* Brand bar */}
       <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center gap-2">
-          <Logo variant="mark" className="w-7 h-7" />
+        <div className="flex items-center gap-2.5">
+          <Logo variant="mark" className="w-11 h-11" />
           <span
-            className="text-lg text-[#b76767] tracking-tight"
+            className="text-2xl text-[#b76767] tracking-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif" }}
           >
             MenoStart
