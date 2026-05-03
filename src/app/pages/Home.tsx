@@ -87,13 +87,13 @@ export function Home() {
       {/* Brand bar */}
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-2">
+          <Logo variant="mark" className="w-7 h-7" />
           <span
             className="text-lg text-[#b76767] tracking-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif" }}
           >
             MenoStart
           </span>
-          <Logo variant="mark" className="w-7 h-7" />
         </div>
         <div className="bg-white rounded-2xl px-3 py-2 shadow-sm flex items-center gap-2">
           <Battery className="w-5 h-5 text-green-500" fill="currentColor" />
