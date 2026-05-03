@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <title>MenoStart — Clinician Report Laptop Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <style>
   @page { size: 1800px 1300px; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +32,6 @@
   .mbp {
     position: relative;
     width: 1500px;
-    filter: drop-shadow(0 60px 80px rgba(0,0,0,0.25)) drop-shadow(0 30px 40px rgba(214,51,132,0.15));
   }
   .mbp-screen {
     width: 1500px;
@@ -69,7 +71,6 @@
     background: linear-gradient(180deg, #c8c8c8 0%, #b0b0b0 40%, #969696 100%);
     border-radius: 0 0 14px 14px;
     position: relative;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   }
   .mbp-base::before {
     content: '';
@@ -135,7 +136,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2.5px solid #D63384;
+    border-bottom: 2.5px solid #b76767;
     padding-bottom: 12px;
     margin-bottom: 16px;
   }
@@ -146,13 +147,13 @@
   }
   .r-brand svg { width: 44px; height: 44px; }
   .r-brand-text {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 28px;
-    color: #D63384;
+    font-family: 'The Seasons', 'Seasons', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #b76767;
     letter-spacing: -0.5px;
     line-height: 1;
   }
-  .r-brand-text span { font-weight: 600; }
   .r-doc-title {
     font-size: 16px;
     font-weight: 700;
@@ -231,7 +232,7 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 14px;
   }
-  .r-stat-icon.flame { background: #fde4ec; color: #D63384; }
+  .r-stat-icon.flame { background: #fde4ec; color: #b76767; }
   .r-stat-icon.moon { background: #ede9fe; color: #7c3aed; }
   .r-stat-icon.temp { background: #ffedd5; color: #ea580c; }
   .r-stat-icon.hrv { background: #dbeafe; color: #2563eb; }
@@ -294,7 +295,7 @@
     margin-bottom: 4px;
   }
   .r-trig-name { font-weight: 600; color: #1f2937; }
-  .r-trig-pct { font-weight: 700; color: #D63384; font-size: 13px; }
+  .r-trig-pct { font-weight: 700; color: #b76767; font-size: 13px; }
   .r-trig-bar {
     height: 7px;
     background: #f3eceb;
@@ -303,7 +304,7 @@
   }
   .r-trig-fill {
     height: 100%;
-    background: linear-gradient(90deg, #e85ba5, #D63384);
+    background: linear-gradient(90deg, #e85ba5, #b76767);
     border-radius: 4px;
   }
   .r-trig-meta { font-size: 10px; color: #9ca3af; margin-top: 3px; }
@@ -326,7 +327,7 @@
   }
   .r-reco-bullet {
     flex: 0 0 20px; height: 20px; border-radius: 50%;
-    background: #fde4ec; color: #D63384;
+    background: #fde4ec; color: #b76767;
     display: flex; align-items: center; justify-content: center;
     font-size: 11px; font-weight: 800; margin-top: 1px;
   }
@@ -360,14 +361,14 @@
           <!-- Header -->
           <div class="r-header">
             <div class="r-brand">
+              <div class="r-brand-text">MenoStart</div>
               <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(180, 180)">
-                  <circle cx="0" cy="0" r="155" fill="none" stroke="#D63384" stroke-width="14"/>
+                  <circle cx="0" cy="0" r="155" fill="none" stroke="#b76767" stroke-width="14"/>
                   <path d="M -110 0 L -68 0 L -47 47 L -21 -30 L 0 55 L 21 -30 L 47 47 L 68 0 L 110 0"
-                        fill="none" stroke="#D63384" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+                        fill="none" stroke="#b76767" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
                 </g>
               </svg>
-              <div class="r-brand-text">Meno<span>Start</span></div>
             </div>
             <div class="r-doc-title">Patient Symptom Report</div>
             <div class="r-doc-meta">
@@ -451,7 +452,7 @@
                     <defs>
                       <linearGradient id="hfBar" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stop-color="#fb7185"/>
-                        <stop offset="100%" stop-color="#D63384"/>
+                        <stop offset="100%" stop-color="#b76767"/>
                       </linearGradient>
                       <linearGradient id="nsBar" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stop-color="#a78bfa"/>

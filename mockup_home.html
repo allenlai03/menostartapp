@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <title>MenoStart — Home Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* === CANVAS === */
   @page { size: 1200px 1700px; margin: 0; }
@@ -36,7 +39,7 @@
     position: relative;
     box-shadow:
       0 50px 100px -20px rgba(0,0,0,0.35),
-      0 30px 60px -30px rgba(214, 51, 132, 0.25),
+      0 30px 60px -30px rgba(183, 103, 103, 0.25),
       inset 0 0 0 2px #2a2a2a,
       inset 0 0 2px 4px #555;
   }
@@ -111,12 +114,12 @@
   }
   .brand svg { width: 24px; height: 24px; }
   .brand-text {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 18px;
-    color: #D63384;
+    font-family: 'The Seasons', 'Seasons', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #b76767;
     letter-spacing: -0.3px;
   }
-  .brand-text span { font-weight: 700; }
   .ring-status {
     background: #fff;
     border-radius: 14px;
@@ -157,11 +160,11 @@
 
   /* Hero card: AUTO-DETECTED (replaces "predict in 35 min") */
   .hero {
-    background: linear-gradient(135deg, #ec4899 0%, #D63384 60%, #be185d 100%);
+    background: linear-gradient(135deg, #ec4899 0%, #b76767 60%, #be185d 100%);
     border-radius: 24px;
     padding: 18px 20px 20px;
     color: #fff;
-    box-shadow: 0 12px 24px -8px rgba(214, 51, 132, 0.4);
+    box-shadow: 0 12px 24px -8px rgba(183, 103, 103, 0.4);
     margin-bottom: 18px;
     position: relative;
     overflow: hidden;
@@ -230,7 +233,7 @@
     font-size: 17px;
     margin-bottom: 8px;
   }
-  .mi-flame { background: #fde4ec; color: #D63384; }
+  .mi-flame { background: #fde4ec; color: #b76767; }
   .mi-temp { background: #ffedd5; color: #ea580c; }
   .mi-moon { background: #ede9fe; color: #7c3aed; }
   .metric-value { font-size: 22px; font-weight: 800; color: #1f2937; line-height: 1; }
@@ -252,7 +255,7 @@
   .trend-head h3 { font-size: 15px; font-weight: 700; color: #1f2937; }
   .trend-head p { font-size: 11.5px; color: #9ca3af; margin-top: 1px; }
   .trend-pill {
-    background: linear-gradient(135deg, #ec4899, #D63384);
+    background: linear-gradient(135deg, #ec4899, #b76767);
     color: #fff;
     border-radius: 10px;
     padding: 4px 10px;
@@ -305,7 +308,7 @@
     flex: 1;
     color: #9ca3af;
   }
-  .nav-item.active { color: #D63384; }
+  .nav-item.active { color: #b76767; }
   .nav-item .label { font-size: 10px; font-weight: 600; }
   .nav-item .icon { font-size: 18px; }
   .nav-fab {
@@ -315,10 +318,10 @@
   .nav-fab .fab {
     width: 60px; height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ec4899, #D63384);
+    background: linear-gradient(135deg, #ec4899, #b76767);
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-size: 28px; font-weight: 300;
-    box-shadow: 0 10px 22px -6px rgba(214, 51, 132, 0.55);
+    box-shadow: 0 10px 22px -6px rgba(183, 103, 103, 0.55);
   }
   .nav-fab .label { font-size: 10px; font-weight: 700; color: #6b7280; margin-top: 4px; text-align: center; }
 
@@ -366,14 +369,14 @@
 
         <div class="brand-row">
           <div class="brand">
+            <div class="brand-text">MenoStart</div>
             <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
               <g transform="translate(180, 180)">
-                <circle cx="0" cy="0" r="155" fill="none" stroke="#D63384" stroke-width="14"/>
+                <circle cx="0" cy="0" r="155" fill="none" stroke="#b76767" stroke-width="14"/>
                 <path d="M -110 0 L -68 0 L -47 47 L -21 -30 L 0 55 L 21 -30 L 47 47 L 68 0 L 110 0"
-                      fill="none" stroke="#D63384" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+                      fill="none" stroke="#b76767" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
               </g>
             </svg>
-            <div class="brand-text">Meno<span>Start</span></div>
           </div>
           <div class="ring-status">
             <div class="battery-icon"><div class="battery-fill"></div></div>
@@ -439,7 +442,7 @@
             <defs>
               <linearGradient id="trendStroke" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stop-color="#fb7185"/>
-                <stop offset="100%" stop-color="#D63384"/>
+                <stop offset="100%" stop-color="#b76767"/>
               </linearGradient>
               <linearGradient id="trendArea" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#fb7185" stop-opacity="0.25"/>
@@ -469,11 +472,11 @@
             <circle cx="250" cy="82" r="4" fill="#fff" stroke="#fb7185" stroke-width="2.5"/>
             <circle cx="305" cy="107" r="4" fill="#fff" stroke="#fb7185" stroke-width="2.5"/>
             <!-- highlight today -->
-            <circle cx="360" cy="95" r="6" fill="#D63384"/>
-            <circle cx="360" cy="95" r="10" fill="#D63384" fill-opacity="0.18"/>
+            <circle cx="360" cy="95" r="6" fill="#b76767"/>
+            <circle cx="360" cy="95" r="10" fill="#b76767" fill-opacity="0.18"/>
           </svg>
           <div class="chart-x">
-            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span style="color:#D63384;font-weight:700;">Sun</span>
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span style="color:#b76767;font-weight:700;">Sun</span>
           </div>
         </div>
 

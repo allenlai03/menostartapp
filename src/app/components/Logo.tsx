@@ -1,7 +1,7 @@
 type LogoProps = {
   variant?: "full" | "mark";
   className?: string;
-  /** Color override; defaults to brand pink */
+  /** Color override; defaults to brand rose */
   color?: string;
 };
 
@@ -9,7 +9,7 @@ type LogoProps = {
  * MenoStart logo — pulse line inside a circle, optional wordmark.
  * `variant="full"` renders the lockup; `variant="mark"` is just the icon.
  */
-export function Logo({ variant = "mark", className, color = "#D63384" }: LogoProps) {
+export function Logo({ variant = "mark", className, color = "#b76767" }: LogoProps) {
   if (variant === "mark") {
     return (
       <svg
@@ -55,14 +55,13 @@ export function Logo({ variant = "mark", className, color = "#D63384" }: LogoPro
         x="300"
         y="640"
         textAnchor="middle"
-        fontFamily="Georgia, 'Times New Roman', serif"
+        fontFamily="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
         fontSize="64"
         fontWeight="400"
         fill={color}
         letterSpacing="-1"
       >
-        Meno
-        <tspan fontWeight="600">Start</tspan>
+        MenoStart
       </text>
     </svg>
   );

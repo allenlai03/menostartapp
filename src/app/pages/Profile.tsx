@@ -235,10 +235,10 @@ export function Profile() {
       <div className="bg-white/60 rounded-2xl p-4 mb-4 flex flex-col items-center gap-1">
         <Logo variant="mark" className="w-8 h-8 mb-1" />
         <p
-          className="text-center text-base text-[#D63384]"
-          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          className="text-center text-base text-[#b76767]"
+          style={{ fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif" }}
         >
-          Meno<span className="font-semibold">Start</span>
+          MenoStart
         </p>
         <p className="text-center text-sm text-gray-400">Version 1.0.0</p>
       </div>

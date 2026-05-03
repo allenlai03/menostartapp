@@ -6,10 +6,10 @@ export function Splash() {
       <div className="flex flex-col items-center gap-5 splash-rise">
         <Logo variant="mark" className="w-28 h-28 splash-pulse" />
         <div
-          className="text-4xl text-[#D63384] tracking-tight"
-          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          className="text-4xl text-[#b76767] tracking-tight"
+          style={{ fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif" }}
         >
-          Meno<span className="font-semibold">Start</span>
+          MenoStart
         </div>
         <p className="text-sm text-gray-500 mt-1 tracking-wide">
           Objective insights for menopause care
@@ -39,7 +39,7 @@ export function Splash() {
         .splash-pulse { animation: splash-pulse 2.2s ease-in-out infinite; }
         .splash-dot {
           width: 6px; height: 6px; border-radius: 50%;
-          background: #D63384;
+          background: #b76767;
           animation: splash-blink 1.2s ease-in-out infinite;
         }
         .splash-dot-2 { animation-delay: 0.2s; }
