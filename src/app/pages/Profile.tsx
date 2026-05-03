@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Button } from "../components/ui/button";
+import { Logo } from "../components/Logo";
 
 export function Profile() {
   const stats = [
@@ -231,8 +232,14 @@ export function Profile() {
       </div>
 
       {/* App Info */}
-      <div className="bg-white/60 rounded-2xl p-4 mb-4">
-        <p className="text-center text-sm text-gray-600">MenoStart</p>
+      <div className="bg-white/60 rounded-2xl p-4 mb-4 flex flex-col items-center gap-1">
+        <Logo variant="mark" className="w-8 h-8 mb-1" />
+        <p
+          className="text-center text-base text-[#D63384]"
+          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+        >
+          Meno<span className="font-semibold">Start</span>
+        </p>
         <p className="text-center text-sm text-gray-400">Version 1.0.0</p>
       </div>
 

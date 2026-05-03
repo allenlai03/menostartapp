@@ -118,7 +118,7 @@ export function PredictiveAI() {
         <div className="flex-1">
           <h1 className="text-2xl font-bold text-gray-800">Your Forecast</h1>
           <p className="text-sm text-gray-500">
-            Based on your bracelet data
+            Based on your ring data
           </p>
         </div>
       </div>
@@ -159,7 +159,7 @@ export function PredictiveAI() {
               Hot flash likely in about 35 minutes
             </p>
             <p className="text-sm text-amber-100 mt-1 leading-relaxed">
-              Your bracelet detected early signs. Scroll down for tips.
+              Your ring detected early signs. Scroll down for tips.
             </p>
           </div>
         </div>
@@ -331,7 +331,7 @@ export function PredictiveAI() {
               How this works
             </p>
             <p className="text-sm text-purple-600 leading-relaxed mt-1">
-              Your MenoStart bracelet continuously reads your heart rhythm, skin
+              Your MenoStart ring continuously reads your heart rhythm, skin
               temperature, and movement. Our AI learns your personal patterns
               over time and can spot the early signs of a hot flash 15–45
               minutes before you feel it.

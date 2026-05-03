@@ -120,11 +120,11 @@ export function Log() {
         <p className="text-sm text-gray-500 mt-1">{today}</p>
       </div>
 
-      {/* Bracelet Detection */}
+      {/* Ring Detection */}
       <div className="mb-6 bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl p-4 border border-rose-200">
         <div className="flex items-center gap-2 mb-3">
           <Wifi className="w-5 h-5 text-rose-500" />
-          <p className="font-semibold text-gray-800">MenoStart Bracelet</p>
+          <p className="font-semibold text-gray-800">MenoStart Ring</p>
         </div>
         <p className="text-sm text-gray-600 mb-3">Auto-detected today:</p>
         <div className="flex items-center gap-3 bg-white rounded-xl p-3">

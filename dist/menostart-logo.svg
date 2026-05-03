@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 760" width="600" height="760">
+  <g transform="translate(300, 300)">
+    <circle cx="0" cy="0" r="155" fill="none" stroke="#D63384" stroke-width="11"/>
+    <path d="M -110 0 L -68 0 L -47 47 L -21 -30 L 0 55 L 21 -30 L 47 47 L 68 0 L 110 0"
+          fill="none" stroke="#D63384" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="300" y="640" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="400" fill="#D63384" letter-spacing="-1">Meno<tspan font-weight="600">Start</tspan></text>
+</svg>

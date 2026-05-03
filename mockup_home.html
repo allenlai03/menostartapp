@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>MenoStart — Home Mockup</title>
+<style>
+  /* === CANVAS === */
+  @page { size: 1200px 1700px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1200px;
+    height: 1700px;
+    background: transparent;
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    color: #1f2937;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stage {
+    width: 1200px;
+    height: 1700px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 50%, #fff0f3 100%);
+  }
+  body.transparent .stage { background: transparent; }
+
+  /* === iPHONE FRAME === */
+  .phone {
+    width: 460px;
+    height: 940px;
+    background: linear-gradient(155deg, #4a4a4a 0%, #1a1a1a 30%, #2c2c2c 70%, #1a1a1a 100%);
+    border-radius: 64px;
+    padding: 14px;
+    position: relative;
+    box-shadow:
+      0 50px 100px -20px rgba(0,0,0,0.35),
+      0 30px 60px -30px rgba(214, 51, 132, 0.25),
+      inset 0 0 0 2px #2a2a2a,
+      inset 0 0 2px 4px #555;
+  }
+  /* side buttons */
+  .btn-side { position: absolute; background: #2a2a2a; border-radius: 2px; }
+  .btn-volume-up { left: -2px; top: 160px; width: 4px; height: 60px; }
+  .btn-volume-down { left: -2px; top: 240px; width: 4px; height: 60px; }
+  .btn-mute { left: -2px; top: 100px; width: 4px; height: 30px; }
+  .btn-power { right: -2px; top: 200px; width: 4px; height: 90px; }
+
+  /* screen */
+  .screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #fdf2f5 0%, #fce7ef 40%, #faf0f5 100%);
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Dynamic Island */
+  .island {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 124px;
+    height: 36px;
+    background: #000;
+    border-radius: 22px;
+    z-index: 10;
+  }
+  /* Status bar */
+  .status {
+    padding: 18px 30px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+    height: 60px;
+  }
+  .status-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .status-icons svg { display: block; }
+
+  /* === APP CONTENT === */
+  .app {
+    flex: 1;
+    overflow: hidden;
+    padding: 8px 22px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Brand row */
+  .brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand svg { width: 24px; height: 24px; }
+  .brand-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    color: #D63384;
+    letter-spacing: -0.3px;
+  }
+  .brand-text span { font-weight: 700; }
+  .ring-status {
+    background: #fff;
+    border-radius: 14px;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .battery-icon {
+    width: 26px; height: 14px;
+    position: relative;
+    border: 1.5px solid #16a34a;
+    border-radius: 3px;
+  }
+  .battery-icon::after {
+    content: '';
+    position: absolute;
+    right: -3px; top: 3px;
+    width: 2px; height: 5px;
+    background: #16a34a;
+    border-radius: 0 1px 1px 0;
+  }
+  .battery-fill {
+    position: absolute;
+    left: 1px; top: 1px; bottom: 1px;
+    width: 85%;
+    background: #16a34a;
+    border-radius: 1.5px;
+  }
+  .ring-text .bl { font-size: 9px; color: #9ca3af; line-height: 1; font-weight: 600; }
+  .ring-text .bv { font-size: 14px; font-weight: 700; color: #1f2937; line-height: 1.1; }
+
+  /* Greeting */
+  .greeting { margin-bottom: 18px; }
+  .greeting h1 { font-size: 24px; font-weight: 700; color: #1f2937; letter-spacing: -0.4px; }
+  .greeting p { font-size: 13px; color: #6b7280; margin-top: 3px; }
+
+  /* Hero card: AUTO-DETECTED (replaces "predict in 35 min") */
+  .hero {
+    background: linear-gradient(135deg, #ec4899 0%, #D63384 60%, #be185d 100%);
+    border-radius: 24px;
+    padding: 18px 20px 20px;
+    color: #fff;
+    box-shadow: 0 12px 24px -8px rgba(214, 51, 132, 0.4);
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .hero-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 6px;
+  }
+  .hero-tag {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9);
+    text-transform: uppercase; letter-spacing: 0.6px;
+  }
+  .hero-tag .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.25);
+  }
+  .hero h2 { font-size: 19px; font-weight: 700; margin: 4px 0 4px; line-height: 1.25; }
+  .hero p { font-size: 12.5px; color: rgba(255,255,255,0.88); line-height: 1.45; }
+  .hero-stats {
+    display: flex; gap: 8px;
+    margin-top: 12px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 6px 12px;
+    width: fit-content;
+    backdrop-filter: blur(4px);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .hero-stats .arrow { color: #bbf7d0; }
+
+  /* Today's metrics */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 8px;
+    padding-left: 2px;
+  }
+  .metrics {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px;
+    margin-bottom: 18px;
+  }
+  .metric {
+    background: #fff;
+    border-radius: 18px;
+    padding: 12px 12px 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .metric-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .mi-flame { background: #fde4ec; color: #D63384; }
+  .mi-temp { background: #ffedd5; color: #ea580c; }
+  .mi-moon { background: #ede9fe; color: #7c3aed; }
+  .metric-value { font-size: 22px; font-weight: 800; color: #1f2937; line-height: 1; }
+  .metric-unit { font-size: 11px; color: #9ca3af; font-weight: 500; margin-left: 3px; }
+  .metric-label { font-size: 11px; color: #6b7280; margin-top: 4px; }
+
+  /* Weekly Trend */
+  .trend-card {
+    background: #fff;
+    border-radius: 22px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    margin-bottom: 16px;
+  }
+  .trend-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .trend-head h3 { font-size: 15px; font-weight: 700; color: #1f2937; }
+  .trend-head p { font-size: 11.5px; color: #9ca3af; margin-top: 1px; }
+  .trend-pill {
+    background: linear-gradient(135deg, #ec4899, #D63384);
+    color: #fff;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+  .chart-svg { width: 100%; height: 140px; display: block; }
+  .chart-x {
+    display: flex; justify-content: space-between;
+    margin-top: 4px;
+    padding: 0 4px;
+    font-size: 10.5px;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  /* Report quick link */
+  .report-link {
+    background: #fff;
+    border-radius: 18px;
+    padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .rl-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #10b981, #0d9488);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px; flex-shrink: 0;
+  }
+  .rl-text { flex: 1; }
+  .rl-text .t1 { font-size: 13.5px; font-weight: 700; color: #1f2937; line-height: 1.2; }
+  .rl-text .t2 { font-size: 11px; color: #6b7280; margin-top: 2px; }
+  .rl-arrow { color: #d1d5db; font-size: 16px; }
+
+  /* === BOTTOM NAV === */
+  .nav {
+    position: relative;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0,0,0,0.04);
+    padding: 14px 30px 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  .nav-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    flex: 1;
+    color: #9ca3af;
+  }
+  .nav-item.active { color: #D63384; }
+  .nav-item .label { font-size: 10px; font-weight: 600; }
+  .nav-item .icon { font-size: 18px; }
+  .nav-fab {
+    flex: 0 0 auto;
+    margin-top: -32px;
+  }
+  .nav-fab .fab {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ec4899, #D63384);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 28px; font-weight: 300;
+    box-shadow: 0 10px 22px -6px rgba(214, 51, 132, 0.55);
+  }
+  .nav-fab .label { font-size: 10px; font-weight: 700; color: #6b7280; margin-top: 4px; text-align: center; }
+
+  /* Home indicator */
+  .home-indicator {
+    position: absolute;
+    bottom: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 134px; height: 5px;
+    background: #1f2937;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<script>
+  if (location.hash === '#transparent') document.body.classList.add('transparent');
+</script>
+<div class="stage">
+
+  <div class="phone">
+    <div class="btn-side btn-mute"></div>
+    <div class="btn-side btn-volume-up"></div>
+    <div class="btn-side btn-volume-down"></div>
+    <div class="btn-side btn-power"></div>
+
+    <div class="screen">
+      <div class="island"></div>
+
+      <!-- Status bar -->
+      <div class="status">
+        <div>9:41</div>
+        <div class="status-icons">
+          <!-- signal -->
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="#1f2937"/><rect x="4.5" y="5" width="3" height="6" rx="0.5" fill="#1f2937"/><rect x="9" y="2.5" width="3" height="8.5" rx="0.5" fill="#1f2937"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="#1f2937"/></svg>
+          <!-- wifi -->
+          <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 2 C5 2 2.5 3 0.7 4.7 L2.2 6.2 C3.6 4.9 5.5 4 7.5 4 C9.5 4 11.4 4.9 12.8 6.2 L14.3 4.7 C12.5 3 10 2 7.5 2 Z" fill="#1f2937"/><path d="M7.5 5.5 C6 5.5 4.6 6.1 3.5 7 L5 8.5 C5.7 7.9 6.6 7.5 7.5 7.5 C8.4 7.5 9.3 7.9 10 8.5 L11.5 7 C10.4 6.1 9 5.5 7.5 5.5 Z" fill="#1f2937"/><circle cx="7.5" cy="9.5" r="1.2" fill="#1f2937"/></svg>
+          <!-- battery -->
+          <svg width="27" height="12" viewBox="0 0 27 12"><rect x="0.5" y="0.5" width="22" height="11" rx="2.5" fill="none" stroke="#1f2937" stroke-opacity="0.4"/><rect x="2" y="2" width="19" height="8" rx="1.5" fill="#1f2937"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#1f2937" fill-opacity="0.4"/></svg>
+        </div>
+      </div>
+
+      <!-- App content -->
+      <div class="app">
+
+        <div class="brand-row">
+          <div class="brand">
+            <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(180, 180)">
+                <circle cx="0" cy="0" r="155" fill="none" stroke="#D63384" stroke-width="14"/>
+                <path d="M -110 0 L -68 0 L -47 47 L -21 -30 L 0 55 L 21 -30 L 47 47 L 68 0 L 110 0"
+                      fill="none" stroke="#D63384" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+            <div class="brand-text">Meno<span>Start</span></div>
+          </div>
+          <div class="ring-status">
+            <div class="battery-icon"><div class="battery-fill"></div></div>
+            <div class="ring-text">
+              <div class="bl">RING</div>
+              <div class="bv">85%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="greeting">
+          <h1>Good evening, Sarah</h1>
+          <p>Saturday, May 2</p>
+        </div>
+
+        <!-- HERO: Auto-detected (replaces predictive AI) -->
+        <div class="hero">
+          <div class="hero-row">
+            <div class="hero-tag">
+              <span class="dot"></span>
+              Auto-detected today
+            </div>
+            <span style="opacity:0.6;font-size:18px;">›</span>
+          </div>
+          <h2>3 hot flashes detected</h2>
+          <p>Your ring picked these up automatically. Most occurred between 6&ndash;9 PM.</p>
+          <div class="hero-stats">
+            <span class="arrow">↓ 25%</span>
+            <span style="opacity:0.85;">vs. yesterday</span>
+          </div>
+        </div>
+
+        <!-- Today's metrics -->
+        <div class="section-label">Today's metrics</div>
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-icon mi-flame">♨</div>
+            <div><span class="metric-value">3</span></div>
+            <div class="metric-label">Hot flashes</div>
+          </div>
+          <div class="metric">
+            <div class="metric-icon mi-temp">°</div>
+            <div><span class="metric-value">98.2</span><span class="metric-unit">°F</span></div>
+            <div class="metric-label">Skin temp</div>
+          </div>
+          <div class="metric">
+            <div class="metric-icon mi-moon">☾</div>
+            <div><span class="metric-value">7</span><span class="metric-unit">h</span></div>
+            <div class="metric-label">Sleep</div>
+          </div>
+        </div>
+
+        <!-- Weekly Trend -->
+        <div class="trend-card">
+          <div class="trend-head">
+            <div>
+              <h3>Weekly Trend</h3>
+              <p>Hot Flashes · last 7 days</p>
+            </div>
+            <div class="trend-pill">↗ trending</div>
+          </div>
+          <svg class="chart-svg" viewBox="0 0 380 140" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="trendStroke" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#fb7185"/>
+                <stop offset="100%" stop-color="#D63384"/>
+              </linearGradient>
+              <linearGradient id="trendArea" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fb7185" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#fb7185" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- gridlines -->
+            <line x1="0" y1="20" x2="380" y2="20" stroke="#f3f4f6"/>
+            <line x1="0" y1="60" x2="380" y2="60" stroke="#f3f4f6"/>
+            <line x1="0" y1="100" x2="380" y2="100" stroke="#f3f4f6"/>
+            <!-- y labels -->
+            <text x="0" y="22" font-size="9" fill="#cbd5e1">8</text>
+            <text x="0" y="62" font-size="9" fill="#cbd5e1">5</text>
+            <text x="0" y="102" font-size="9" fill="#cbd5e1">2</text>
+
+            <!-- data: Mon=3, Tue=5, Wed=2, Thu=4, Fri=3, Sat=1, Sun=2
+                 map: x = 30 + i*55 ; y range: val=8→20, val=0→120 → y = 120 - val*12.5 -->
+            <path d="M 30 82 L 85 57 L 140 95 L 195 70 L 250 82 L 305 107 L 360 95 L 360 130 L 30 130 Z"
+                  fill="url(#trendArea)"/>
+            <polyline points="30,82 85,57 140,95 195,70 250,82 305,107 360,95"
+                      fill="none" stroke="url(#trendStroke)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- dots -->
+            <circle cx="30" cy="82" r="4" fill="#fff" stroke="#fb7185" stroke-width="2.5"/>
+            <circle cx="85" cy="57" r="4" fill="#fff" stroke="#fb7185" stroke-width="2.5"/>
+            <circle cx="140" cy="95" r="4" fill="#fff" stroke="#fb7185" stroke-width="2.5"/>
+            <circle cx="195" cy="70" r="4" fill="#fff" stroke="#fb7185" stroke-width="2.5"/>
+            <circle cx="250" cy="82" r="4" fill="#fff" stroke="#fb7185" stroke-width="2.5"/>
+            <circle cx="305" cy="107" r="4" fill="#fff" stroke="#fb7185" stroke-width="2.5"/>
+            <!-- highlight today -->
+            <circle cx="360" cy="95" r="6" fill="#D63384"/>
+            <circle cx="360" cy="95" r="10" fill="#D63384" fill-opacity="0.18"/>
+          </svg>
+          <div class="chart-x">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span style="color:#D63384;font-weight:700;">Sun</span>
+          </div>
+        </div>
+
+        <!-- Report link -->
+        <div class="report-link">
+          <div class="rl-icon">▤</div>
+          <div class="rl-text">
+            <div class="t1">Doctor Report</div>
+            <div class="t2">Export your 30-day clinical summary</div>
+          </div>
+          <div class="rl-arrow">›</div>
+        </div>
+
+      </div>
+
+      <!-- Bottom nav -->
+      <div class="nav">
+        <div class="nav-item active">
+          <div class="icon">⌂</div>
+          <div class="label">Home</div>
+        </div>
+        <div class="nav-item">
+          <div class="icon">⌁</div>
+          <div class="label">Insights</div>
+        </div>
+        <div class="nav-fab">
+          <div class="fab">+</div>
+          <div class="label">Log</div>
+        </div>
+        <div class="nav-item">
+          <div class="icon">◌</div>
+          <div class="label">Chat</div>
+        </div>
+        <div class="nav-item">
+          <div class="icon">◔</div>
+          <div class="label">Profile</div>
+        </div>
+      </div>
+      <div class="home-indicator"></div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

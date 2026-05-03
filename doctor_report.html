@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>menoStart — Patient Symptom Report</title>
+<style>
+  @page { size: 11in 8.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 11in;
+    height: 8.5in;
+    font-family: -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    color: #1f2937;
+    background: #f8f5f4;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 11in;
+    height: 8.5in;
+    padding: 0.32in 0.42in 0.28in 0.42in;
+    background: #fff;
+    position: relative;
+  }
+
+  /* === HEADER BAR === */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #D63384;
+    padding-bottom: 9px;
+    margin-bottom: 12px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 36px; height: 36px;
+    flex-shrink: 0;
+  }
+  .brand-mark svg { width: 100%; height: 100%; display: block; }
+  .brand-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #D63384;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .brand-text span { font-weight: 600; }
+  .doc-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .doc-meta {
+    text-align: right;
+    font-size: 9.5px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+  .doc-meta strong { color: #1f2937; }
+
+  /* === PATIENT STRIP === */
+  .patient-strip {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 0;
+    background: #faf5f4;
+    border: 1px solid #f0e0de;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+  }
+  .patient-cell {
+    border-right: 1px solid #f0e0de;
+    padding-right: 14px;
+  }
+  .patient-cell + .patient-cell { padding-left: 14px; }
+  .patient-cell:last-child { border-right: none; }
+  .ps-label {
+    font-size: 8px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    font-weight: 700;
+  }
+  .ps-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 2px;
+  }
+  .ps-sub {
+    font-size: 9px;
+    color: #6b7280;
+    margin-top: 1px;
+  }
+
+  /* === BODY GRID === */
+  .body {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 14px;
+  }
+  .col { display: flex; flex-direction: column; gap: 11px; }
+
+  /* === STAT CARDS === */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+  }
+  .stat {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 8px;
+    padding: 9px 10px;
+    position: relative;
+  }
+  .stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .stat-icon {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .stat-icon.flame { background: #fde4e0; color: #D63384; }
+  .stat-icon.moon { background: #ede9fe; color: #7c3aed; }
+  .stat-icon.temp { background: #ffedd5; color: #ea580c; }
+  .stat-icon.hrv { background: #dbeafe; color: #2563eb; }
+  .stat-trend {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .stat-trend.good { background: #dcfce7; color: #15803d; }
+  .stat-trend.bad { background: #fee2e2; color: #b91c1c; }
+  .stat-value {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1f2937;
+    line-height: 1;
+  }
+  .stat-unit {
+    font-size: 9px;
+    color: #6b7280;
+    margin-left: 3px;
+    font-weight: 500;
+  }
+  .stat-label {
+    font-size: 9px;
+    color: #6b7280;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+  }
+
+  /* === SECTION CARD === */
+  .card {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1f2937;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card-sub {
+    font-size: 8.5px;
+    color: #9ca3af;
+    font-style: italic;
+  }
+
+  /* === CHART STYLES === */
+  .chart-wrap { width: 100%; height: 130px; }
+  .chart-wrap svg { width: 100%; height: 100%; display: block; }
+  .legend {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 4px;
+    font-size: 8.5px;
+    color: #6b7280;
+  }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-dot {
+    width: 8px; height: 8px; border-radius: 2px;
+  }
+
+  /* === TRIGGERS === */
+  .trigger-list { display: flex; flex-direction: column; gap: 7px; }
+  .trigger-row { font-size: 9.5px; }
+  .trigger-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 3px;
+  }
+  .trigger-name { font-weight: 600; color: #1f2937; }
+  .trigger-pct { font-weight: 700; color: #D63384; font-size: 10px; }
+  .trigger-bar {
+    height: 6px;
+    background: #f3eceb;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .trigger-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e85ba5, #D63384);
+    border-radius: 3px;
+  }
+  .trigger-meta { font-size: 8px; color: #9ca3af; margin-top: 2px; }
+
+  /* === CLINICAL SUMMARY === */
+  .summary-text {
+    font-size: 9.5px;
+    line-height: 1.55;
+    color: #374151;
+  }
+  .summary-text p { margin-bottom: 5px; }
+  .summary-text strong { color: #1f2937; }
+  .summary-text .pos { color: #15803d; font-weight: 700; }
+  .summary-text .neg { color: #b91c1c; font-weight: 700; }
+
+  /* === RECOMMENDATIONS === */
+  .reco-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .reco-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: #374151;
+  }
+  .reco-bullet {
+    flex: 0 0 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fde4e0;
+    color: #D63384;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 800;
+    margin-top: 1px;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    position: absolute;
+    bottom: 0.18in;
+    left: 0.42in;
+    right: 0.42in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ececec;
+    padding-top: 6px;
+    font-size: 8px;
+    color: #9ca3af;
+  }
+  .footer .disclaimer {
+    flex: 1;
+    font-style: italic;
+    padding-right: 16px;
+  }
+  .footer .pageno { font-weight: 600; color: #6b7280; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(180, 180)">
+            <circle cx="0" cy="0" r="155" fill="none" stroke="#D63384" stroke-width="11"/>
+            <path d="M -110 0 L -68 0 L -47 47 L -21 -30 L 0 55 L 21 -30 L 47 47 L 68 0 L 110 0"
+                  fill="none" stroke="#D63384" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+      <div class="brand-text">Meno<span>Start</span></div>
+    </div>
+    <div class="doc-title">Patient Symptom Report</div>
+    <div class="doc-meta">
+      <strong>Report #MS-2026-0427-SJ</strong><br/>
+      Generated May 2, 2026 · 9:41 AM
+    </div>
+  </div>
+
+  <!-- Patient strip -->
+  <div class="patient-strip">
+    <div class="patient-cell">
+      <div class="ps-label">Patient</div>
+      <div class="ps-value">Sarah Johnson</div>
+      <div class="ps-sub">DOB: Aug 14, 1977 · Age 48 · MRN: 042871</div>
+    </div>
+    <div class="patient-cell">
+      <div class="ps-label">Stage</div>
+      <div class="ps-value">Perimenopause</div>
+      <div class="ps-sub">Self-reported, 14 mo</div>
+    </div>
+    <div class="patient-cell">
+      <div class="ps-label">Reporting period</div>
+      <div class="ps-value">30 days</div>
+      <div class="ps-sub">Mar 28 — Apr 27, 2026</div>
+    </div>
+    <div class="patient-cell">
+      <div class="ps-label">Data source</div>
+      <div class="ps-value">menoStart smart ring</div>
+      <div class="ps-sub">PPG · skin temp · motion · sleep</div>
+    </div>
+  </div>
+
+  <!-- Body grid -->
+  <div class="body">
+
+    <!-- LEFT COLUMN -->
+    <div class="col">
+
+      <!-- Stat cards -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-row">
+            <div class="stat-icon flame">♨</div>
+            <div class="stat-trend good">↓ 27%</div>
+          </div>
+          <div><span class="stat-value">52</span><span class="stat-unit">total</span></div>
+          <div class="stat-label">Hot flashes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-row">
+            <div class="stat-icon moon">☾</div>
+            <div class="stat-trend good">↑ 15%</div>
+          </div>
+          <div><span class="stat-value">6.5</span><span class="stat-unit">hrs/nt</span></div>
+          <div class="stat-label">Avg sleep</div>
+        </div>
+        <div class="stat">
+          <div class="stat-row">
+            <div class="stat-icon temp">°</div>
+            <div class="stat-trend good">↓ 0.3°</div>
+          </div>
+          <div><span class="stat-value">98.3</span><span class="stat-unit">°F</span></div>
+          <div class="stat-label">Avg skin temp</div>
+        </div>
+        <div class="stat">
+          <div class="stat-row">
+            <div class="stat-icon hrv">♥</div>
+            <div class="stat-trend good">↑ 8%</div>
+          </div>
+          <div><span class="stat-value">54</span><span class="stat-unit">ms</span></div>
+          <div class="stat-label">Avg HRV</div>
+        </div>
+      </div>
+
+      <!-- Weekly bar chart -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Weekly Symptom Trend</div>
+          <div class="card-sub">Hot flashes &amp; night sweats per week</div>
+        </div>
+        <div class="chart-wrap">
+          <svg viewBox="0 0 400 130" preserveAspectRatio="none">
+            <!-- Y gridlines -->
+            <line x1="35" y1="10" x2="395" y2="10" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="35" y1="35" x2="395" y2="35" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="35" y1="60" x2="395" y2="60" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="35" y1="85" x2="395" y2="85" stroke="#f1f1f1" stroke-width="1"/>
+            <line x1="35" y1="110" x2="395" y2="110" stroke="#e5e5e5" stroke-width="1"/>
+            <!-- Y labels -->
+            <text x="30" y="13" font-size="8" fill="#9ca3af" text-anchor="end">20</text>
+            <text x="30" y="38" font-size="8" fill="#9ca3af" text-anchor="end">15</text>
+            <text x="30" y="63" font-size="8" fill="#9ca3af" text-anchor="end">10</text>
+            <text x="30" y="88" font-size="8" fill="#9ca3af" text-anchor="end">5</text>
+            <text x="30" y="113" font-size="8" fill="#9ca3af" text-anchor="end">0</text>
+
+            <defs>
+              <linearGradient id="hfBar" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fb7185"/>
+                <stop offset="100%" stop-color="#D63384"/>
+              </linearGradient>
+              <linearGradient id="nsBar" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#a78bfa"/>
+                <stop offset="100%" stop-color="#7c3aed"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Bars: 4 weeks. Scale: 20=10px, 0=110px. y = 110 - val*5 -->
+            <!-- Week 1: hf=14 (y=40), ns=5 (y=85) -->
+            <rect x="55" y="40" width="22" height="70" rx="3" fill="url(#hfBar)"/>
+            <rect x="80" y="85" width="22" height="25" rx="3" fill="url(#nsBar)"/>
+            <text x="80" y="125" font-size="9" fill="#6b7280" text-anchor="middle">Week 1</text>
+
+            <!-- Week 2: hf=18 (y=20), ns=7 (y=75) -->
+            <rect x="140" y="20" width="22" height="90" rx="3" fill="url(#hfBar)"/>
+            <rect x="165" y="75" width="22" height="35" rx="3" fill="url(#nsBar)"/>
+            <text x="165" y="125" font-size="9" fill="#6b7280" text-anchor="middle">Week 2</text>
+
+            <!-- Week 3: hf=11 (y=55), ns=4 (y=90) -->
+            <rect x="225" y="55" width="22" height="55" rx="3" fill="url(#hfBar)"/>
+            <rect x="250" y="90" width="22" height="20" rx="3" fill="url(#nsBar)"/>
+            <text x="250" y="125" font-size="9" fill="#6b7280" text-anchor="middle">Week 3</text>
+
+            <!-- Week 4: hf=9 (y=65), ns=3 (y=95) -->
+            <rect x="310" y="65" width="22" height="45" rx="3" fill="url(#hfBar)"/>
+            <rect x="335" y="95" width="22" height="15" rx="3" fill="url(#nsBar)"/>
+            <text x="335" y="125" font-size="9" fill="#6b7280" text-anchor="middle">Week 4</text>
+          </svg>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#fb7185"></div>Hot flashes</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Night sweats</div>
+        </div>
+      </div>
+
+      <!-- Temperature line chart -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Skin Temperature Trend</div>
+          <div class="card-sub">Daily average over 30-day period (°F)</div>
+        </div>
+        <div class="chart-wrap" style="height:115px;">
+          <svg viewBox="0 0 400 115" preserveAspectRatio="none">
+            <!-- gridlines -->
+            <line x1="35" y1="10" x2="395" y2="10" stroke="#f1f1f1"/>
+            <line x1="35" y1="40" x2="395" y2="40" stroke="#f1f1f1"/>
+            <line x1="35" y1="70" x2="395" y2="70" stroke="#f1f1f1"/>
+            <line x1="35" y1="95" x2="395" y2="95" stroke="#e5e5e5"/>
+            <!-- Y labels (range 97.5–99.5) -->
+            <text x="30" y="13" font-size="8" fill="#9ca3af" text-anchor="end">99.5</text>
+            <text x="30" y="43" font-size="8" fill="#9ca3af" text-anchor="end">99.0</text>
+            <text x="30" y="73" font-size="8" fill="#9ca3af" text-anchor="end">98.5</text>
+            <text x="30" y="98" font-size="8" fill="#9ca3af" text-anchor="end">98.0</text>
+
+            <defs>
+              <linearGradient id="tempLine" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#fb923c"/>
+                <stop offset="100%" stop-color="#ef4444"/>
+              </linearGradient>
+              <linearGradient id="tempArea" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fb923c" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#fb923c" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Data: day1=98.1, 5=98.4, 10=98.8, 15=98.3, 20=98.6, 25=98.2, 30=98.0
+                 Map: x = 50 + (day-1)/29 * 320 ; y = 95 - (val-98)*30/1.5 → val 99.5 = 5, 98 = 95
+                 Better: y = 95 - (val-98)/1.5 * 85 → 98=95, 99.5=10
+            -->
+            <!-- Area path under line -->
+            <path d="M 50 89 L 105 72 L 160 50 L 215 78 L 270 61 L 325 84 L 395 95 L 395 110 L 50 110 Z"
+                  fill="url(#tempArea)"/>
+            <!-- Line -->
+            <polyline points="50,89 105,72 160,50 215,78 270,61 325,84 395,95"
+                      fill="none" stroke="url(#tempLine)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Dots -->
+            <circle cx="50" cy="89" r="3" fill="#fff" stroke="#fb923c" stroke-width="2"/>
+            <circle cx="105" cy="72" r="3" fill="#fff" stroke="#fb923c" stroke-width="2"/>
+            <circle cx="160" cy="50" r="3" fill="#fff" stroke="#fb923c" stroke-width="2"/>
+            <circle cx="215" cy="78" r="3" fill="#fff" stroke="#fb923c" stroke-width="2"/>
+            <circle cx="270" cy="61" r="3" fill="#fff" stroke="#fb923c" stroke-width="2"/>
+            <circle cx="325" cy="84" r="3" fill="#fff" stroke="#fb923c" stroke-width="2"/>
+            <circle cx="395" cy="95" r="3" fill="#fff" stroke="#fb923c" stroke-width="2"/>
+            <!-- X labels -->
+            <text x="50" y="110" font-size="8" fill="#9ca3af" text-anchor="middle">Day 1</text>
+            <text x="160" y="110" font-size="8" fill="#9ca3af" text-anchor="middle">Day 10</text>
+            <text x="270" y="110" font-size="8" fill="#9ca3af" text-anchor="middle">Day 20</text>
+            <text x="395" y="110" font-size="8" fill="#9ca3af" text-anchor="end">Day 30</text>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col">
+
+      <!-- Trigger analysis -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Trigger Correlation</div>
+          <div class="card-sub">Identified from biometric + lifestyle logs</div>
+        </div>
+        <div class="trigger-list">
+          <div class="trigger-row">
+            <div class="trigger-top">
+              <span class="trigger-name">Poor sleep (under 6 hours)</span>
+              <span class="trigger-pct">73%</span>
+            </div>
+            <div class="trigger-bar"><div class="trigger-fill" style="width:73%"></div></div>
+            <div class="trigger-meta">18 occurrences this period</div>
+          </div>
+          <div class="trigger-row">
+            <div class="trigger-top">
+              <span class="trigger-name">High stress periods</span>
+              <span class="trigger-pct">61%</span>
+            </div>
+            <div class="trigger-bar"><div class="trigger-fill" style="width:61%"></div></div>
+            <div class="trigger-meta">14 occurrences this period</div>
+          </div>
+          <div class="trigger-row">
+            <div class="trigger-top">
+              <span class="trigger-name">Caffeine after 2 PM</span>
+              <span class="trigger-pct">45%</span>
+            </div>
+            <div class="trigger-bar"><div class="trigger-fill" style="width:45%"></div></div>
+            <div class="trigger-meta">9 occurrences this period</div>
+          </div>
+          <div class="trigger-row">
+            <div class="trigger-top">
+              <span class="trigger-name">Hot environments (&gt;75°F)</span>
+              <span class="trigger-pct">38%</span>
+            </div>
+            <div class="trigger-bar"><div class="trigger-fill" style="width:38%"></div></div>
+            <div class="trigger-meta">7 occurrences this period</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clinical summary -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Clinical Summary</div>
+          <div class="card-sub">AI-generated overview</div>
+        </div>
+        <div class="summary-text">
+          <p>Patient shows a <span class="pos">downward trend in hot flash frequency</span> over the 30-day period (14 → 9/wk, −27%), suggesting current management strategies are effective.</p>
+          <p><strong>Sleep quality improved</strong> from 6.2 to 7.1 hrs nightly average; <strong>HRV rose 8%</strong>, indicating improved autonomic regulation. Skin temperature baseline declined 0.3°F.</p>
+          <p><strong>Primary triggers:</strong> sleep deprivation (73%), stress (61%), and afternoon caffeine (45%). Continued focus on sleep hygiene and stress management is recommended.</p>
+        </div>
+      </div>
+
+      <!-- Recommendations -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Suggested Discussion Points</div>
+        </div>
+        <div class="reco-list">
+          <div class="reco-item"><div class="reco-bullet">1</div><div>Review sleep hygiene plan; patient sleep onset improved but fragmentation persists on high-symptom nights.</div></div>
+          <div class="reco-item"><div class="reco-bullet">2</div><div>Consider evaluating current HRT/non-hormonal regimen — symptom decline may indicate effective response.</div></div>
+          <div class="reco-item"><div class="reco-bullet">3</div><div>Discuss caffeine timing; afternoon intake correlates with 45% of evening hot flash events.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="disclaimer">
+      AI-generated from wearable sensor data and self-reported symptoms. Intended to support — not replace — clinical judgment.
+      Data is encrypted and HIPAA-compliant. menoStart does not share patient data with third parties.
+    </div>
+    <div class="pageno">menoStart · Page 1 of 1</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -13,6 +13,7 @@ import {
   MessageCircle,
   Users,
 } from "lucide-react";
+import { Logo } from "../components/Logo";
 import {
   Line,
   LineChart,
@@ -83,25 +84,36 @@ export function Home() {
 
   return (
     <div className="min-h-full px-5 py-6 max-w-md mx-auto">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800">
-            {greeting}, Sarah
-          </h1>
-          <p className="text-sm text-gray-500 mt-1">{today}</p>
+      {/* Brand bar */}
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center gap-2">
+          <Logo variant="mark" className="w-7 h-7" />
+          <span
+            className="text-lg text-[#D63384] tracking-tight"
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          >
+            Meno<span className="font-semibold">Start</span>
+          </span>
         </div>
         <div className="bg-white rounded-2xl px-3 py-2 shadow-sm flex items-center gap-2">
-          <Battery className="w-5 h-5 text-green-500" />
+          <Battery className="w-5 h-5 text-green-500" fill="currentColor" />
           <div>
             <p className="text-[11px] text-gray-400 font-medium leading-none">
-              Bracelet
+              Ring
             </p>
             <p className="text-base font-bold text-gray-800 leading-tight">
               85%
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Greeting */}
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-gray-800">
+          {greeting}, Sarah
+        </h1>
+        <p className="text-sm text-gray-500 mt-1">{today}</p>
       </div>
 
       {/* Prediction Alert — the hero */}
@@ -120,7 +132,7 @@ export function Home() {
             Hot flash likely in ~35 min
           </h2>
           <p className="text-sm text-amber-100 leading-relaxed">
-            Your bracelet detected early signs. Tap for tips to prepare.
+            Your ring detected early signs. Tap for tips to prepare.
           </p>
           <div className="flex items-center gap-2 mt-3 bg-white/15 rounded-xl px-3 py-2 w-fit">
             <div className="w-2 h-2 rounded-full bg-white animate-pulse" />

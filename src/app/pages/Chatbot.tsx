@@ -22,18 +22,18 @@ const quickReplies = [
   "What triggers my hot flashes?",
   "Tips for better sleep",
   "Prepare a doctor report",
-  "Explain my bracelet data",
+  "Explain my ring data",
 ];
 
 const typingResponses: Record<string, string> = {
   "What triggers my hot flashes?":
-    "Based on your 90-day data, your top 3 triggers are:\n\n1. **Poor sleep** (under 6 hours) — 73% correlation with next-day hot flashes\n\n2. **Caffeine after 2 PM** — linked to 45% increase in evening episodes\n\n3. **High stress** (low HRV readings) — 61% correlation\n\nYour bracelet has also detected that hot, enclosed spaces increase episode severity by about 2x.\n\nWould you like me to set up alerts for these triggers?",
+    "Based on your 90-day data, your top 3 triggers are:\n\n1. **Poor sleep** (under 6 hours) — 73% correlation with next-day hot flashes\n\n2. **Caffeine after 2 PM** — linked to 45% increase in evening episodes\n\n3. **High stress** (low HRV readings) — 61% correlation\n\nYour ring has also detected that hot, enclosed spaces increase episode severity by about 2x.\n\nWould you like me to set up alerts for these triggers?",
   "Tips for better sleep":
-    "Here's a personalized sleep plan based on your patterns:\n\n**Before bed** (start 1 hour before)\n• Lower room temp to 65–68°F — your night sweats decrease 40% at this range\n• Avoid screens 30 min before bed\n• Try the guided relaxation in the app\n\n**During sleep**\n• Your worst disruptions happen between 2–4 AM. A cooling pad may help\n• Your bracelet will track and report improvements\n\nYour best sleep this month was last Tuesday — 8.2 hours with only 2 disruptions. That day you walked 8,000+ steps and had no caffeine after noon.",
+    "Here's a personalized sleep plan based on your patterns:\n\n**Before bed** (start 1 hour before)\n• Lower room temp to 65–68°F — your night sweats decrease 40% at this range\n• Avoid screens 30 min before bed\n• Try the guided relaxation in the app\n\n**During sleep**\n• Your worst disruptions happen between 2–4 AM. A cooling pad may help\n• Your ring will track and report improvements\n\nYour best sleep this month was last Tuesday — 8.2 hours with only 2 disruptions. That day you walked 8,000+ steps and had no caffeine after noon.",
   "Prepare a doctor report":
     "I can generate a comprehensive report for your clinician! It will include:\n\n• **Symptom summary** — frequency, severity, and trends\n• **Biometric data** — heart patterns, temperature, and sleep\n• **Trigger analysis** — your identified triggers and correlations\n• **What's working** — and what isn't\n\nThe report covers the last 30 days. Would you like me to prepare it? You can review before sharing.",
-  "Explain my bracelet data":
-    "Your MenoStart bracelet tracks 3 key signals:\n\n**Heart rhythm** — Measures how your heart rate varies beat-to-beat. Lower variability often means higher stress or a hot flash is coming. Yours is a bit low today.\n\n**Skin temperature** — Tracks your thermal patterns throughout the day. Right now you're about 1°F warmer than your usual baseline.\n\n**Movement** — Helps distinguish hot flashes from exercise and tracks your activity level.\n\nAll three signals feed into our AI to predict hot flashes 15–45 minutes ahead. The more you wear it, the more accurate it gets.",
+  "Explain my ring data":
+    "Your MenoStart ring tracks 3 key signals:\n\n**Heart rhythm** — Measures how your heart rate varies beat-to-beat. Lower variability often means higher stress or a hot flash is coming. Yours is a bit low today.\n\n**Skin temperature** — Tracks your thermal patterns throughout the day. Right now you're about 1°F warmer than your usual baseline.\n\n**Movement** — Helps distinguish hot flashes from exercise and tracks your activity level.\n\nAll three signals feed into our AI to predict hot flashes 15–45 minutes ahead. The more you wear it, the more accurate it gets.",
 };
 
 export function Chatbot() {

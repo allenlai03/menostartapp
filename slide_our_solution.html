@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Our Solution — menoStart</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 13.333in;
+    height: 7.5in;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color: #2b2b2b;
+    background: linear-gradient(135deg, #fff 0%, #fdf2f1 60%, #fbe1de 100%);
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    position: relative;
+    width: 13.333in;
+    height: 7.5in;
+    padding: 0.55in 0.7in 0.5in 0.7in;
+  }
+  .frame {
+    position: absolute;
+    inset: 0.35in;
+    border: 1.5px solid #f3cfca;
+    border-radius: 18px;
+    pointer-events: none;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 52px;
+    letter-spacing: 1px;
+    color: #D63384;
+  }
+  .header-line {
+    flex: 1;
+    height: 1.5px;
+    background: #D63384;
+    margin-top: 14px;
+    max-width: 280px;
+  }
+  .corner-brand {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .corner-brand svg { width: 22px; height: 22px; }
+  .corner-brand-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 14px;
+    color: #D63384;
+  }
+  .corner-brand-text span { font-weight: 600; }
+
+  .subhead {
+    font-size: 20px;
+    line-height: 1.45;
+    color: #2b2b2b;
+    max-width: 9.5in;
+    margin-bottom: 24px;
+  }
+  .body {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 30px;
+    align-items: center;
+    height: calc(100% - 175px);
+  }
+  /* Mockups */
+  .mockups {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .phone {
+    position: relative;
+    width: 1.8in;
+    height: 3.7in;
+    background: #111;
+    border-radius: 32px;
+    padding: 8px;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+    z-index: 2;
+    margin-right: -28px;
+  }
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 26px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-size: 9px;
+    color: #2b2b2b;
+  }
+  .phone-notch {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 14px;
+    background: #111;
+    border-radius: 10px;
+    z-index: 3;
+  }
+  .ph-status {
+    padding: 18px 14px 4px;
+    font-size: 8px;
+    color: #888;
+    text-align: right;
+  }
+  .ph-brand {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 14px 6px;
+  }
+  .ph-brand svg { width: 12px; height: 12px; }
+  .ph-brand-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 9px;
+    color: #D63384;
+  }
+  .ph-brand-text span { font-weight: 600; }
+
+  .ph-greeting {
+    padding: 0 14px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #2b2b2b;
+  }
+  .ph-greeting .small { font-size: 7px; color: #888; font-weight: 400; }
+
+  .ph-detected {
+    margin: 4px 12px 8px;
+    background: #eafbe7;
+    border-left: 2px solid #4ea24c;
+    border-radius: 6px;
+    padding: 5px 8px;
+  }
+  .ph-detected-label {
+    font-size: 6.5px;
+    color: #4ea24c;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .ph-detected-text {
+    font-size: 9px;
+    font-weight: 700;
+    color: #2c5d2a;
+    margin-top: 2px;
+  }
+  .ph-section-title {
+    padding: 4px 14px 4px;
+    font-size: 8px;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .ph-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 0 12px 8px;
+  }
+  .ph-card {
+    background: #f7f2f1;
+    border-radius: 8px;
+    padding: 6px 7px;
+  }
+  .ph-card-label {
+    font-size: 6.5px;
+    color: #888;
+    text-transform: uppercase;
+  }
+  .ph-card-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: #D63384;
+    margin-top: 1px;
+  }
+  .ph-card-sub {
+    font-size: 6.5px;
+    color: #999;
+  }
+  .ph-tabbar {
+    margin-top: auto;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-around;
+    padding: 6px 0 8px;
+    font-size: 7px;
+    color: #aaa;
+  }
+  .ph-tabbar .active { color: #D63384; font-weight: 700; }
+
+  /* Laptop */
+  .laptop { position: relative; z-index: 1; }
+  .laptop-screen {
+    width: 4.5in;
+    height: 2.85in;
+    background: #111;
+    border-radius: 12px 12px 4px 4px;
+    padding: 10px;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+  }
+  .laptop-base {
+    width: 4.95in;
+    height: 11px;
+    background: linear-gradient(180deg, #d8d8d8, #b8b8b8);
+    margin-left: -0.225in;
+    border-radius: 0 0 14px 14px;
+    position: relative;
+  }
+  .laptop-base::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 70px; height: 4px;
+    background: #a8a8a8;
+    border-radius: 0 0 6px 6px;
+  }
+  .laptop-content {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 6px;
+    padding: 9px 11px;
+    font-size: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .lp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid #D63384;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+  }
+  .lp-brand {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .lp-brand svg { width: 16px; height: 16px; display: block; }
+  .lp-brand-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 11px;
+    color: #D63384;
+    line-height: 1;
+  }
+  .lp-brand-text span { font-weight: 600; }
+  .lp-doc-title {
+    font-size: 8px;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .lp-export {
+    background: #D63384;
+    color: #fff;
+    font-size: 7px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  .lp-patient {
+    display: flex;
+    justify-content: space-between;
+    background: #faf5f7;
+    border-radius: 4px;
+    padding: 4px 7px;
+    margin-bottom: 7px;
+    font-size: 7px;
+  }
+  .lp-patient-cell .lp-pl { color: #999; text-transform: uppercase; font-size: 6px; letter-spacing: 0.4px; }
+  .lp-patient-cell .lp-pv { font-weight: 700; color: #1f2937; font-size: 7.5px; }
+  .lp-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 8px;
+    flex: 1;
+  }
+  .lp-card {
+    background: #faf5f7;
+    border-radius: 5px;
+    padding: 6px 7px;
+  }
+  .lp-card-title {
+    font-size: 7px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 42px;
+  }
+  .chart .bar {
+    flex: 1;
+    background: linear-gradient(180deg, #e85ba5, #D63384);
+    border-radius: 2px 2px 0 0;
+  }
+  .lp-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7px;
+    margin-bottom: 2px;
+  }
+  .lp-trigger-bar {
+    height: 3px;
+    background: #f0d9e6;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .lp-trigger-fill {
+    height: 100%;
+    background: #D63384;
+    border-radius: 2px;
+  }
+  .lp-summary {
+    margin-top: 6px;
+    background: #fdf2f1;
+    border-radius: 5px;
+    padding: 5px 7px;
+    font-size: 6.5px;
+    line-height: 1.4;
+    color: #5a2a26;
+  }
+  .lp-summary-label {
+    font-weight: 700;
+    color: #D63384;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-size: 6px;
+    margin-bottom: 2px;
+  }
+
+  /* Software panel */
+  .software-panel {
+    background: #f5ede9;
+    border-radius: 14px;
+    padding: 32px 36px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .software-title {
+    font-size: 44px;
+    font-weight: 800;
+    color: #D63384;
+    background: #f0d3cf;
+    display: inline-block;
+    padding: 4px 18px;
+    border-radius: 4px;
+    margin: 0 auto 26px;
+    text-align: center;
+  }
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 18px;
+    line-height: 1.35;
+    color: #2b2b2b;
+  }
+  .bullet-icon {
+    flex: 0 0 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1.5px solid #D63384;
+    color: #D63384;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 1px;
+  }
+  .bullet strong { font-weight: 700; }
+  .device-caption {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="frame"></div>
+
+    <div class="header">
+      <h1>OUR SOLUTION</h1>
+      <div class="header-line"></div>
+      <div class="corner-brand">
+        <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(180, 180)">
+            <circle cx="0" cy="0" r="155" fill="none" stroke="#D63384" stroke-width="11"/>
+            <path d="M -110 0 L -68 0 L -47 47 L -21 -30 L 0 55 L 21 -30 L 47 47 L 68 0 L 110 0"
+                  fill="none" stroke="#D63384" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+        <div class="corner-brand-text">Meno<span>Start</span></div>
+      </div>
+    </div>
+
+    <p class="subhead">
+      menoStart gives women objective, continuous symptom tracking and turns it into clinician-ready insights.
+    </p>
+
+    <div class="body">
+      <!-- LEFT: device mockups -->
+      <div>
+        <div class="mockups">
+          <!-- Phone: Home page with brand mark -->
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="ph-status">9:41</div>
+
+              <div class="ph-brand">
+                <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+                  <g transform="translate(180, 180)">
+                    <circle cx="0" cy="0" r="155" fill="none" stroke="#D63384" stroke-width="11"/>
+                    <path d="M -110 0 L -68 0 L -47 47 L -21 -30 L 0 55 L 21 -30 L 47 47 L 68 0 L 110 0"
+                          fill="none" stroke="#D63384" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                </svg>
+                <div class="ph-brand-text">Meno<span>Start</span></div>
+              </div>
+
+              <div class="ph-greeting">
+                Good morning, Sarah
+                <div class="small">Tuesday, May 5</div>
+              </div>
+
+              <div class="ph-detected">
+                <div class="ph-detected-label">Auto-detected</div>
+                <div class="ph-detected-text">3 hot flashes today</div>
+              </div>
+
+              <div class="ph-section-title">Today's metrics</div>
+              <div class="ph-cards">
+                <div class="ph-card">
+                  <div class="ph-card-label">Hot flashes</div>
+                  <div class="ph-card-value">3</div>
+                  <div class="ph-card-sub">vs avg 4</div>
+                </div>
+                <div class="ph-card">
+                  <div class="ph-card-label">Skin temp</div>
+                  <div class="ph-card-value">37.1°</div>
+                  <div class="ph-card-sub">+0.4 baseline</div>
+                </div>
+                <div class="ph-card">
+                  <div class="ph-card-label">Sleep</div>
+                  <div class="ph-card-value">6.2h</div>
+                  <div class="ph-card-sub">2 wakings</div>
+                </div>
+                <div class="ph-card">
+                  <div class="ph-card-label">Energy</div>
+                  <div class="ph-card-value">7/10</div>
+                  <div class="ph-card-sub">logged</div>
+                </div>
+              </div>
+
+              <div class="ph-tabbar">
+                <span class="active">Today</span>
+                <span>Log</span>
+                <span>Trends</span>
+                <span>Report</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Laptop: clinician report with logo header -->
+          <div class="laptop">
+            <div class="laptop-screen">
+              <div class="laptop-content">
+                <div class="lp-head">
+                  <div class="lp-brand">
+                    <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+                      <g transform="translate(180, 180)">
+                        <circle cx="0" cy="0" r="155" fill="none" stroke="#D63384" stroke-width="11"/>
+                        <path d="M -110 0 L -68 0 L -47 47 L -21 -30 L 0 55 L 21 -30 L 47 47 L 68 0 L 110 0"
+                              fill="none" stroke="#D63384" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                      </g>
+                    </svg>
+                    <div class="lp-brand-text">Meno<span>Start</span></div>
+                  </div>
+                  <div class="lp-doc-title">Patient Symptom Report</div>
+                  <div class="lp-export">Export PDF</div>
+                </div>
+
+                <div class="lp-patient">
+                  <div class="lp-patient-cell">
+                    <div class="lp-pl">Patient</div>
+                    <div class="lp-pv">Sarah Johnson · Age 48</div>
+                  </div>
+                  <div class="lp-patient-cell">
+                    <div class="lp-pl">Period</div>
+                    <div class="lp-pv">Mar 28 — Apr 27, 2026</div>
+                  </div>
+                  <div class="lp-patient-cell">
+                    <div class="lp-pl">Stage</div>
+                    <div class="lp-pv">Perimenopause</div>
+                  </div>
+                </div>
+
+                <div class="lp-grid">
+                  <div class="lp-card">
+                    <div class="lp-card-title">Weekly Symptoms</div>
+                    <div class="chart">
+                      <div class="bar" style="height:35%"></div>
+                      <div class="bar" style="height:55%"></div>
+                      <div class="bar" style="height:48%"></div>
+                      <div class="bar" style="height:72%"></div>
+                      <div class="bar" style="height:60%"></div>
+                      <div class="bar" style="height:42%"></div>
+                    </div>
+                  </div>
+                  <div class="lp-card">
+                    <div class="lp-card-title">Triggers</div>
+                    <div class="lp-trigger"><span>Sleep</span><span>73%</span></div>
+                    <div class="lp-trigger-bar"><div class="lp-trigger-fill" style="width:73%"></div></div>
+                    <div class="lp-trigger"><span>Stress</span><span>61%</span></div>
+                    <div class="lp-trigger-bar"><div class="lp-trigger-fill" style="width:61%"></div></div>
+                    <div class="lp-trigger"><span>Caffeine</span><span>45%</span></div>
+                    <div class="lp-trigger-bar"><div class="lp-trigger-fill" style="width:45%"></div></div>
+                  </div>
+                </div>
+
+                <div class="lp-summary">
+                  <div class="lp-summary-label">Clinical summary</div>
+                  Avg 4.2 VMS events/day. Strong correlation w/ sleep fragmentation. Treatment response trending positive.
+                </div>
+              </div>
+            </div>
+            <div class="laptop-base"></div>
+          </div>
+        </div>
+        <div class="device-caption">Companion app + smart ring</div>
+      </div>
+
+      <!-- RIGHT: Software panel -->
+      <div class="software-panel">
+        <div class="software-title">Software</div>
+        <ul class="bullet-list">
+          <li class="bullet">
+            <span class="bullet-icon">⌚</span>
+            <span><strong>AI early-detection</strong> of hot flashes via PPG</span>
+          </li>
+          <li class="bullet">
+            <span class="bullet-icon">↻</span>
+            <span><strong>Identifies your personal</strong> symptom triggers</span>
+          </li>
+          <li class="bullet">
+            <span class="bullet-icon">↗</span>
+            <span><strong>Tracks treatment response</strong> over time</span>
+          </li>
+          <li class="bullet">
+            <span class="bullet-icon">▤</span>
+            <span><strong>One-tap clinician</strong> PDF report</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

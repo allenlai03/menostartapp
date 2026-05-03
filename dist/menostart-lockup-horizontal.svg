@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 240" width="920" height="240">
+  <!-- Background panel with soft pink fill + thin border -->
+  <rect x="2" y="2" width="916" height="236" rx="14" ry="14"
+        fill="#fdf2f1" stroke="#f3cfca" stroke-width="2"/>
+
+  <!-- Mark: pulse line inside circle -->
+  <g transform="translate(130, 120)">
+    <circle cx="0" cy="0" r="64" fill="none" stroke="#D63384" stroke-width="6"/>
+    <path d="M -45 0 L -28 0 L -19 21 L -8 -13 L 0 24 L 8 -13 L 19 21 L 28 0 L 45 0"
+          fill="none" stroke="#D63384" stroke-width="6"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="230" y="158"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="115" fill="#D63384" letter-spacing="-2">Meno<tspan font-weight="700">Start</tspan></text>
+</svg>
