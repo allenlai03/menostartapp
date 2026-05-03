@@ -54,9 +54,9 @@ export function Home() {
       label: "Hot Flashes",
       value: "3",
       unit: "today",
-      bgColor: "bg-rose-50",
-      textColor: "text-[#9e5757]",
-      gradient: "from-[#d49b9b] to-[#b76767]",
+      bgColor: "bg-red-50",
+      textColor: "text-red-600",
+      gradient: "from-red-400 to-red-600",
     },
     {
       id: "temp" as const,
@@ -89,7 +89,7 @@ export function Home() {
         <div className="flex items-center gap-2">
           <Logo variant="mark" className="w-7 h-7" />
           <span
-            className="text-lg text-white tracking-tight"
+            className="text-lg text-[#b76767] tracking-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif" }}
           >
             MenoStart
@@ -118,7 +118,7 @@ export function Home() {
 
       {/* Prediction Alert — the hero */}
       <Link to="/predict" className="block mb-6">
-        <div className="bg-gradient-to-br from-[#d49b9b] to-[#b76767] rounded-3xl p-5 shadow-lg text-white">
+        <div className="bg-gradient-to-br from-[#6b4570] to-[#3f2847] rounded-3xl p-5 shadow-lg text-white">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-2">
               <Activity className="w-5 h-5" />
@@ -194,8 +194,8 @@ export function Home() {
                 x2="1"
                 y2="0"
               >
-                <stop offset="0%" stopColor="#d49b9b" />
-                <stop offset="100%" stopColor="#b76767" />
+                <stop offset="0%" stopColor="#f87171" />
+                <stop offset="100%" stopColor="#dc2626" />
               </linearGradient>
               <linearGradient
                 id="tempGradient"

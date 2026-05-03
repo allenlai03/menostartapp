@@ -124,7 +124,7 @@ export function PredictiveAI() {
       </div>
 
       {/* Main Alert */}
-      <div className="bg-gradient-to-br from-[#d49b9b] to-[#b76767] rounded-3xl p-6 shadow-lg mb-6 text-white">
+      <div className="bg-gradient-to-br from-[#6b4570] to-[#3f2847] rounded-3xl p-6 shadow-lg mb-6 text-white">
         <div className="flex items-center gap-5">
           <div className="relative flex-shrink-0">
             <svg width="100" height="100" viewBox="0 0 140 140">

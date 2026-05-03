@@ -6,7 +6,7 @@ export function Splash() {
       <div className="flex flex-col items-center gap-5 splash-rise">
         <Logo variant="mark" className="w-28 h-28 splash-pulse" />
         <div
-          className="text-4xl text-white tracking-tight"
+          className="text-4xl text-[#b76767] tracking-tight"
           style={{ fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif" }}
         >
           MenoStart
