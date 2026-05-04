@@ -118,7 +118,7 @@ export function Home() {
 
       {/* Prediction Alert — the hero */}
       <Link to="/predict" className="block mb-6">
-        <div className="bg-gradient-to-br from-[#6b4570] to-[#3f2847] rounded-3xl p-5 shadow-lg text-white">
+        <div className="bg-gradient-to-br from-[#ec4899] via-[#b76767] to-[#be185d] rounded-3xl p-5 shadow-lg text-white">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-2">
               <Activity className="w-5 h-5" />
